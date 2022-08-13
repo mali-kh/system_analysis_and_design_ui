@@ -31,15 +31,10 @@ class UsernamePage extends StatelessWidget {
                   },
                 ),
                 CommonButton(
-                  name: 'login',
+                  name: 'continue',
                   onTap: () {
-                    Get.toNamed(Routes.LOGIN);
-                  },
-                ),
-                CommonButton(
-                  name: 'register',
-                  onTap: () {
-                    Get.toNamed(Routes.REGISTER);
+                    controller.checkUsername();
+                    // Get.toNamed(Routes.LOGIN);
                   },
                 ),
               ],
