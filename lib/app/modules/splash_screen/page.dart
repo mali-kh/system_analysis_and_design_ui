@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:get/get.dart';
-import 'package:system_analysis_and_design_project/app/modules/home/page.dart';
+import 'package:system_analysis_and_design_project/app/data/providers/storage_provider.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,9 +16,18 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+    _initialChecks();
   }
 
-  void navigate() {
+  void _initialChecks() async {
+    String? accessToken = await StorageProvider.getAccessToken();
+    if (accessToken == null)
+      Get.offAllNamed(Routes.INTRO);
+    else
+      Get.offAllNamed(Routes.HOME);
+  }
+
+  void _navigate() {
     Get.offAllNamed(Routes.INTRO);
   }
 
@@ -31,11 +40,10 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
             'assets/lotties/initial_loading.json',
             controller: _controller,
             onLoaded: (composition) {
-              _controller
-                ..duration = composition.duration
-                ..forward().whenComplete(() => navigate());
+              _controller..duration = composition.duration;
+              // ..forward().whenComplete(() => _navigate());
             },
-            repeat: false,
+            repeat: true,
           ),
         ),
       ),
