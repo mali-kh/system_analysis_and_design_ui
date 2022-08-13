@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:get/get.dart';
-import 'package:system_analysis_and_design_project/app/modules/home/page.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/old_page.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,7 +9,8 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
