@@ -8,15 +8,15 @@ class UsernameController extends GetxController {
   String username = '';
 
   void checkUsername() async {
-    // if (username.length > 0) {
-    //   try {
-    //     CheckUsernameResponse response = await AuthService().checkUsername(CheckUsernameRequest(username));
-    //     if (response.exist) {
-    //       Get.toNamed(Routes.LOGIN);
-    //     } else {
-    //       Get.toNamed(Routes.REGISTER);
-    //     }
-    //   } catch (e) {}
-    // }
+    if (username.length > 0) {
+      try {
+        CheckUsernameResponse response = await AuthService().checkUsername(CheckUsernameRequest(username));
+        if (response.exist) {
+          Get.toNamed(Routes.LOGIN);
+        } else {
+          Get.toNamed(Routes.REGISTER_INFO);
+        }
+      } catch (e) {}
+    }
   }
 }

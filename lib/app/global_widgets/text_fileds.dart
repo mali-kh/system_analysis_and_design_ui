@@ -63,3 +63,15 @@ class CommonPasswordField extends StatelessWidget {
     );
   }
 }
+
+class SadTextField extends StatelessWidget {
+  const SadTextField({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+
+    );
+  }
+}
+

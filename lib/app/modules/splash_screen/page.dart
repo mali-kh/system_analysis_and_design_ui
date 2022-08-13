@@ -21,6 +21,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
   void _initialChecks() async {
     String? accessToken = await StorageProvider.getAccessToken();
+    print(accessToken);
     if (accessToken == null)
       Get.offAllNamed(Routes.INTRO);
     else

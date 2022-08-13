@@ -34,3 +34,50 @@ class CommonButton extends StatelessWidget {
     );
   }
 }
+
+class SadButton extends StatelessWidget {
+  final String title;
+  final Function onTap;
+  final Color color;
+  final Color textColor;
+  final double width;
+  final double height;
+  final double borderRadius;
+
+  SadButton({
+    required this.title,
+    required this.onTap,
+    required this.color,
+    required this.textColor,
+    required this.width,
+    required this.height,
+    required this.borderRadius,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onTap();
+      },
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.all(
+            Radius.circular(borderRadius),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: TextStyle(
+              color: textColor,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

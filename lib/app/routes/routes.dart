@@ -4,7 +4,8 @@ class Routes {
   static const HOME = '/home';
   static const USERNAME = '/username';
   static const LOGIN = '/login';
-  static const REGISTER = '/register';
+  static const REGISTER_INFO = '/register-info';
+  static const REGISTER_PASSWORD = '/register-password';
   static const FORGOT_PASSWORD = '/forgot-password';
   static const RESET_PASSWORD = '/reset-password';
   static const VERIFY_EMAIL = '/verify-email';

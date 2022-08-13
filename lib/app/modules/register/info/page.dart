@@ -3,13 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/core/values/strings.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
-import 'package:system_analysis_and_design_project/app/modules/login/controller.dart';
+import 'package:system_analysis_and_design_project/app/modules/register/info/controller.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    LoginController controller = Get.put(LoginController());
+    RegisterInfoController controller = Get.put(RegisterInfoController());
 
     return Scaffold(
       body: SafeArea(
@@ -39,16 +39,16 @@ class LoginPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset('assets/svgs/carbon_login.svg'),
+                        SvgPicture.asset('assets/svgs/profile_logo.svg'),
                         SizedBox(
                           width: 25,
                         ),
-                        SvgPicture.asset('assets/svgs/login_signup.svg'),
+                        SvgPicture.asset('assets/svgs/enter_your_personal_info.svg'),
                         SizedBox(
                           width: 25,
                         ),
                         SvgPicture.asset(
-                          'assets/svgs/carbon_login.svg',
+                          'assets/svgs/profile_logo.svg',
                           color: Colors.transparent,
                         ),
                       ],
@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      Strings.EMAIL_ADDRESS_REQUEST,
+                      Strings.INTRODUCE,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w300,
@@ -70,12 +70,7 @@ class LoginPage extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          width: 25,
-                          height: 25,
-                          child: SvgPicture.asset('assets/svgs/mail.svg'),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                           width: 240,
                           height: 50,
                           decoration: BoxDecoration(
@@ -89,7 +84,7 @@ class LoginPage extends StatelessWidget {
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Email',
+                              hintText: 'First Name',
                               hintStyle: TextStyle(
                                 color: Colors.black,
                               ),
@@ -112,12 +107,7 @@ class LoginPage extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          width: 25,
-                          height: 25,
-                          child: SvgPicture.asset('assets/svgs/password.svg'),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                           width: 240,
                           height: 50,
                           decoration: BoxDecoration(
@@ -131,7 +121,7 @@ class LoginPage extends StatelessWidget {
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Password',
+                              hintText: 'Last Name',
                               hintStyle: TextStyle(
                                 color: Colors.black,
                               ),
@@ -139,7 +129,7 @@ class LoginPage extends StatelessWidget {
                             inputFormatters: [
                               // LengthLimitingTextInputFormatter(32),
                             ],
-                            obscureText: true,
+                            obscureText: false,
                           ),
                         ),
                       ],
@@ -156,7 +146,7 @@ class LoginPage extends StatelessWidget {
                           title: Strings.CONTINUE,
                           onTap: () {
                             //todo: change function
-                            Get.toNamed(Routes.LOGIN);
+                            Get.toNamed(Routes.REGISTER_PASSWORD);
                             // controller.checkUsername();
                           },
                           color: Color.fromRGBO(17, 80, 70, 1),
@@ -173,7 +163,7 @@ class LoginPage extends StatelessWidget {
               Container(
                 height: MediaQuery.of(context).size.height / 4,
                 child: SvgPicture.asset(
-                  'assets/svgs/auth_page.svg',
+                  'assets/svgs/name_page.svg',
                 ),
               ),
             ],

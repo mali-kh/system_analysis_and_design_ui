@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/core/values/strings.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
-import 'package:system_analysis_and_design_project/app/modules/login/controller.dart';
+import 'package:system_analysis_and_design_project/app/modules/register/password/controller.dart';
+import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    LoginController controller = Get.put(LoginController());
+    RegisterPasswordController controller = Get.put(RegisterPasswordController());
 
     return Scaffold(
       body: SafeArea(
@@ -39,16 +39,16 @@ class LoginPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset('assets/svgs/carbon_login.svg'),
+                        SvgPicture.asset('assets/svgs/green_lock.svg'),
                         SizedBox(
                           width: 25,
                         ),
-                        SvgPicture.asset('assets/svgs/login_signup.svg'),
+                        SvgPicture.asset('assets/svgs/enter_your_password.svg'),
                         SizedBox(
                           width: 25,
                         ),
                         SvgPicture.asset(
-                          'assets/svgs/carbon_login.svg',
+                          'assets/svgs/profile_logo.svg',
                           color: Colors.transparent,
                         ),
                       ],
@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      Strings.EMAIL_ADDRESS_REQUEST,
+                      Strings.SECURE,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w300,
@@ -70,54 +70,7 @@ class LoginPage extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          width: 25,
-                          height: 25,
-                          child: SvgPicture.asset('assets/svgs/mail.svg'),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-                          width: 240,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            // color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20),
-                            ),
-                          ),
-                          child: TextFormField(
-                            onChanged: (value) {},
-                            textAlign: TextAlign.left,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Email',
-                              hintStyle: TextStyle(
-                                color: Colors.black,
-                              ),
-                            ),
-                            inputFormatters: [
-                              // LengthLimitingTextInputFormatter(32),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      color: Colors.black,
-                      width: double.infinity,
-                      height: 1,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 25,
-                          height: 25,
-                          child: SvgPicture.asset('assets/svgs/password.svg'),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                           width: 240,
                           height: 50,
                           decoration: BoxDecoration(
@@ -149,6 +102,44 @@ class LoginPage extends StatelessWidget {
                       width: double.infinity,
                       height: 1,
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                          width: 240,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            // color: Colors.white,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                          child: TextFormField(
+                            onChanged: (value) {},
+                            textAlign: TextAlign.left,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Repeat the Entered Password',
+                              hintStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                            inputFormatters: [
+                              // LengthLimitingTextInputFormatter(32),
+                            ],
+                            obscureText: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      color: Colors.black,
+                      width: double.infinity,
+                      height: 1,
+                    ),
                     Expanded(
                       child: Align(
                         alignment: FractionalOffset.bottomRight,
@@ -156,7 +147,7 @@ class LoginPage extends StatelessWidget {
                           title: Strings.CONTINUE,
                           onTap: () {
                             //todo: change function
-                            Get.toNamed(Routes.LOGIN);
+                            Get.toNamed(Routes.REGISTER_PASSWORD);
                             // controller.checkUsername();
                           },
                           color: Color.fromRGBO(17, 80, 70, 1),
@@ -173,7 +164,7 @@ class LoginPage extends StatelessWidget {
               Container(
                 height: MediaQuery.of(context).size.height / 4,
                 child: SvgPicture.asset(
-                  'assets/svgs/auth_page.svg',
+                  'assets/svgs/password_page.svg',
                 ),
               ),
             ],
