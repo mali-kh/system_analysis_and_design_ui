@@ -11,4 +11,5 @@ class Routes {
   static const VERIFY_EMAIL = '/verify-email';
   static const PROFILE = '/profile';
   static const BILL = '/bill';
+  static const FILE_INFO = '/file-info';
 }

@@ -36,6 +36,7 @@ dependencies:
   flutter_secure_storage: ^5.1.0
   pretty_dio_logger: ^1.1.1
   auto_size_text: ^3.0.0
+  dotted_border: ^2.0.0
 
 dev_dependencies:
   flutter_test:

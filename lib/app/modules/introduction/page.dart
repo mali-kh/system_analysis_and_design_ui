@@ -65,7 +65,8 @@ class IntroPage extends StatelessWidget {
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 20, top: MediaQuery.of(context).size.width / 8),
+              padding: EdgeInsets.only(
+                  left: 20, top: MediaQuery.of(context).size.width / 8),
               child: Text(
                 Strings.INTRO_TITLE,
                 style: TextStyle(
@@ -77,7 +78,7 @@ class IntroPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 4,
               topMargin: MediaQuery.of(context).size.height / 8,
               height: 40,
-              topLeftRadius: 30,
+              topLeftRadius: 10,
               topRightRadius: 30,
               startColor: Color.fromRGBO(217, 15, 15, 1),
               endColor: Color.fromRGBO(217, 15, 15, 0),
@@ -95,14 +96,15 @@ class IntroPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 4,
               topMargin: (MediaQuery.of(context).size.height / 8) + 30 + 50,
               height: 40,
-              topLeftRadius: 30,
+              topLeftRadius: 10,
               topRightRadius: 30,
               startColor: Color.fromRGBO(251, 173, 22, 1),
               endColor: Color.fromRGBO(251, 173, 22, 0),
             ),
             ColorLayer(
               width: double.infinity,
-              topMargin: (MediaQuery.of(context).size.height / 8) + 30 + 50 + 30,
+              topMargin:
+                  (MediaQuery.of(context).size.height / 8) + 30 + 50 + 30,
               height: 80,
               topLeftRadius: 30,
               topRightRadius: 30,
@@ -111,16 +113,22 @@ class IntroPage extends StatelessWidget {
             ),
             ColorLayer(
               width: MediaQuery.of(context).size.width / 4,
-              topMargin: (MediaQuery.of(context).size.height / 8) + 30 + 50 + 30 + 50,
+              topMargin:
+                  (MediaQuery.of(context).size.height / 8) + 30 + 50 + 30 + 50,
               height: 40,
-              topLeftRadius: 30,
+              topLeftRadius: 10,
               topRightRadius: 30,
               startColor: Color.fromRGBO(35, 163, 144, 1),
               endColor: Color.fromRGBO(35, 163, 144, 0),
             ),
             ColorLayer(
               width: double.infinity,
-              topMargin: (MediaQuery.of(context).size.height / 8) + 30 + 50 + 30 + 50 + 30,
+              topMargin: (MediaQuery.of(context).size.height / 8) +
+                  30 +
+                  50 +
+                  30 +
+                  50 +
+                  30,
               height: double.infinity,
               topLeftRadius: 30,
               topRightRadius: 30,
@@ -128,7 +136,10 @@ class IntroPage extends StatelessWidget {
               endColor: Color.fromRGBO(35, 163, 144, 1),
             ),
             Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (7 / 10), left: 20, right: 60),
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * (7 / 10),
+                  left: 20,
+                  right: 60),
               child: AutoSizeText(
                 Strings.INTRO_DESCRIPTION,
                 style: TextStyle(
@@ -139,7 +150,10 @@ class IntroPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (7 / 10) + 50, left: 20, right: 120),
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * (7 / 10) + 50,
+                  left: 20,
+                  right: 120),
               child: AutoSizeText(
                 Strings.INTRO_AFFILIATION,
                 style: TextStyle(

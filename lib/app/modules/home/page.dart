@@ -57,7 +57,8 @@ class HomePage extends StatelessWidget {
                       child: Row(
                         children: [
                           CircleAvatar(
-                            backgroundImage: AssetImage('assets/images/sample_profile.jpg'),
+                            backgroundImage:
+                                AssetImage('assets/images/sample_profile.jpg'),
                             minRadius: _mq.size.width * 0.075,
                           ),
                           SizedBox(
@@ -114,14 +115,17 @@ class HomePage extends StatelessWidget {
                                     textAlign: TextAlign.left,
                                     textAlignVertical: TextAlignVertical.center,
                                     decoration: InputDecoration(
-                                      fillColor: Color(0xffD1F5F0).withOpacity(0.5),
+                                      fillColor:
+                                          Color(0xffD1F5F0).withOpacity(0.5),
                                       filled: true,
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.white),
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
                                         borderRadius: BorderRadius.circular(6),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.white),
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
                                         borderRadius: BorderRadius.circular(6),
                                       ),
                                       border: InputBorder.none,
@@ -183,7 +187,8 @@ class HomePage extends StatelessWidget {
                                   return Future.delayed(Duration(seconds: 2));
                                 },
                                 child: ListView.separated(
-                                  separatorBuilder: (context, index) => SizedBox(
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(
                                     width: 10,
                                   ),
                                   padding: EdgeInsets.symmetric(horizontal: 15),
@@ -201,7 +206,10 @@ class HomePage extends StatelessWidget {
                                         ),
                                         child: Container(
                                           decoration: new BoxDecoration(
-                                            color: dummy_libraries[idx].type.secondaryColor.withOpacity(0.5),
+                                            color: dummy_libraries[idx]
+                                                .type
+                                                .secondaryColor
+                                                .withOpacity(0.5),
                                           ),
                                           width: 140,
                                           child: Padding(
@@ -212,14 +220,19 @@ class HomePage extends StatelessWidget {
                                             ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Row(
                                                   children: [
                                                     SvgPicture.asset(
                                                       'assets/svgs/folder_icon.svg',
                                                       height: 30,
-                                                      color: dummy_libraries[idx].type.primaryColor,
+                                                      color:
+                                                          dummy_libraries[idx]
+                                                              .type
+                                                              .primaryColor,
                                                     ),
                                                     PopupMenuButton(
                                                       child: Icon(
@@ -229,41 +242,61 @@ class HomePage extends StatelessWidget {
                                                       itemBuilder: (ctx) => [],
                                                     ),
                                                   ],
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                 ),
                                                 Align(
-                                                  alignment: Alignment.centerLeft,
+                                                  alignment:
+                                                      Alignment.centerLeft,
                                                   child: Text(
                                                     dummy_libraries[idx].name,
                                                     style: TextStyle(
                                                       color: theme.primaryColor,
                                                       fontSize: 15,
                                                     ),
-                                                    overflow: TextOverflow.ellipsis,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                   ),
                                                 ),
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      dummy_libraries[idx].numberOfItems.toString() + " items",
+                                                      dummy_libraries[idx]
+                                                              .numberOfItems
+                                                              .toString() +
+                                                          " items",
                                                       style: TextStyle(
-                                                        color: theme.primaryColor,
-                                                        fontWeight: FontWeight.w300,
+                                                        color:
+                                                            theme.primaryColor,
+                                                        fontWeight:
+                                                            FontWeight.w300,
                                                         fontSize: 11,
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets.only(right: 10),
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 10),
                                                       child: Icon(
-                                                        dummy_libraries[idx].type.icon,
-                                                        color: dummy_libraries[idx].type.primaryColor,
+                                                        dummy_libraries[idx]
+                                                            .type
+                                                            .icon,
+                                                        color:
+                                                            dummy_libraries[idx]
+                                                                .type
+                                                                .primaryColor,
                                                         size: 10,
                                                       ),
                                                     )
                                                   ],
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
                                                 ),
                                               ],
                                             ),
@@ -312,17 +345,22 @@ class HomePage extends StatelessWidget {
                               ),
                               GetBuilder<FilterController>(
                                 init: FilterController(),
-                                builder: (controller) => DropdownButtonHideUnderline(
+                                builder: (controller) =>
+                                    DropdownButtonHideUnderline(
                                   child: DropdownButton<ListSort>(
                                     elevation: 2,
-                                    style: TextStyle(fontSize: 12, color: Colors.black, fontFamily: 'Lato'),
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                        fontFamily: 'Lato'),
                                     items: ListSort.values
                                         .map((value) => DropdownMenuItem(
                                               child: Text(value.name),
                                               value: value,
                                             ))
                                         .toList(),
-                                    onChanged: (value) => controller.changeListSort(value!),
+                                    onChanged: (value) =>
+                                        controller.changeListSort(value!),
                                     iconSize: 0,
                                     value: controller.sortListDropdownValue,
                                   ),
@@ -344,7 +382,9 @@ class HomePage extends StatelessWidget {
                                       controller.changeSortDirection();
                                     },
                                     icon: Icon(
-                                      controller.sortAscending ? Icons.arrow_downward_rounded : Icons.arrow_upward_rounded,
+                                      controller.sortAscending
+                                          ? Icons.arrow_downward_rounded
+                                          : Icons.arrow_upward_rounded,
                                     ),
                                   ),
                                 ),
@@ -376,10 +416,14 @@ class HomePage extends StatelessWidget {
                       child: ListView.separated(
                         itemCount: files_dummy.length,
                         itemBuilder: (context, index) {
-                          return FileListTile(
-                            mq: _mq,
-                            theme: theme,
-                            file: files_dummy[index],
+                          return GestureDetector(
+                            onTap: () => print("HSDF"),
+                            behavior: HitTestBehavior.translucent,
+                            child: FileListTile(
+                              mq: _mq,
+                              theme: theme,
+                              file: files_dummy[index],
+                            ),
                           );
                         },
                         separatorBuilder: (context, index) => Divider(),

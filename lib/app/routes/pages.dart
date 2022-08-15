@@ -1,3 +1,4 @@
+import 'package:system_analysis_and_design_project/app/modules/file_info/page.dart';
 import 'package:system_analysis_and_design_project/app/modules/register/info/page.dart';
 import 'package:system_analysis_and_design_project/app/modules/register/password/page.dart';
 
@@ -39,6 +40,10 @@ class AppPages {
     GetPage(
       name: Routes.REGISTER_PASSWORD,
       page: () => RegisterPasswordPage(),
+    ),
+    GetPage(
+      name: Routes.FILE_INFO,
+      page: () => FileInfoPage(),
     ),
   ];
 }

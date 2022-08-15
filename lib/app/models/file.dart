@@ -10,6 +10,10 @@ class File {
   int size;
   FileType type;
   Map additionalInfos;
+  bool isAttachment;
+  bool hasAttachments;
+  List attachments;
+  bool isSharedWithMe;
 
   File({
     required this.name,
@@ -18,6 +22,10 @@ class File {
     required this.size,
     required this.type,
     required this.additionalInfos,
+    required this.isAttachment,
+    required this.hasAttachments,
+    required this.attachments,
+    required this.isSharedWithMe,
   });
 
   static String formatBytes(int bytes, int decimals) {
@@ -27,5 +35,11 @@ class File {
     return ((bytes / pow(1024, i)).toStringAsFixed(decimals)) +
         ' ' +
         suffixes[i];
+  }
+
+  static String getWOExtension(String fileName) {
+    final length = fileName.length;
+    final splits = fileName.split(".");
+    return fileName.substring(0, length - splits[splits.length - 1].length - 1);
   }
 }

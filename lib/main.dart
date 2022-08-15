@@ -12,7 +12,7 @@ Future<void> main() async {
     GetMaterialApp(
       // theme: ,
       // initialRoute: Routes.HOME,
-      initialRoute: Routes.SPLASH_SCREEN,
+      initialRoute: Routes.HOME,
       getPages: AppPages.pages,
       builder: EasyLoading.init(),
       theme: ThemeData(
