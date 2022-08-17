@@ -38,4 +38,9 @@ class CustomIcons {
   static const IconData image = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData programming = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData video = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData mail = IconData(0xe833, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData lock = IconData(0xe834, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData info_i = IconData(0xe835, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData smile = IconData(0xe836, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData logout = IconData(0xe837, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

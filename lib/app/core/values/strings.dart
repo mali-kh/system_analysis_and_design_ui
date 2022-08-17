@@ -8,5 +8,5 @@ class Strings {
   static const String CONTINUE = 'Continue';
   static const String INTRODUCE = 'Introduce Yourself';
   static const String SECURE = 'Secure Your Account';
-
+  static const String CLICKME = "Click Me";
 }

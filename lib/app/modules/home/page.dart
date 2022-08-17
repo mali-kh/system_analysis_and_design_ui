@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:system_analysis_and_design_project/app/controllers/files_controller.dart';
 import 'dart:ui';
@@ -13,6 +14,7 @@ import 'package:system_analysis_and_design_project/app/global_widgets/title_text
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
 import 'package:system_analysis_and_design_project/app/models/list_sort.dart';
 import 'package:system_analysis_and_design_project/app/modules/home/controllers/filter_contorller.dart';
+import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
 // class HomePage extends StatefulWidget {
 //   const HomePage({Key? key}) : super(key: key);
@@ -56,44 +58,59 @@ class HomePage extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/sample_profile.jpg'),
-                            minRadius: _mq.size.width * 0.075,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            width: _mq.size.width * 0.2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                          GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: () => Get.toNamed(
+                              Routes.PROFILE,
+                            ),
+                            child: Row(
                               children: [
-                                Text(
-                                  "Welcome,",
-                                  textDirection: TextDirection.ltr,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: theme.primaryColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17 * _mq.textScaleFactor,
+                                Hero(
+                                  tag: "Pic",
+                                  child: CircleAvatar(
+                                    backgroundImage: AssetImage(
+                                        'assets/images/sample_profile.jpg'),
+                                    minRadius: _mq.size.width * 0.075,
                                   ),
-                                  // maxLines: 1,
-                                  // softWrap: true,
                                 ),
                                 SizedBox(
-                                  height: 5,
+                                  width: 10,
                                 ),
-                                Text(
-                                  "Satya",
-                                  textAlign: TextAlign.left,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: theme.hintColor,
+                                Container(
+                                  width: _mq.size.width * 0.2,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Welcome,",
+                                        textDirection: TextDirection.ltr,
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          color: theme.primaryColor,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17 * _mq.textScaleFactor,
+                                        ),
+                                        // maxLines: 1,
+                                        // softWrap: true,
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "Satya",
+                                        textAlign: TextAlign.left,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          color: theme.hintColor,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
+                              mainAxisSize: MainAxisSize.min,
                             ),
                           ),
                           SizedBox(
@@ -350,14 +367,17 @@ class HomePage extends StatelessWidget {
                                   child: DropdownButton<ListSort>(
                                     elevation: 2,
                                     style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.black,
-                                        fontFamily: 'Lato'),
+                                      fontSize: 12,
+                                      color: Colors.black,
+                                      fontFamily: 'Lato',
+                                    ),
                                     items: ListSort.values
-                                        .map((value) => DropdownMenuItem(
-                                              child: Text(value.name),
-                                              value: value,
-                                            ))
+                                        .map(
+                                          (value) => DropdownMenuItem(
+                                            child: Text(value.name),
+                                            value: value,
+                                          ),
+                                        )
                                         .toList(),
                                     onChanged: (value) =>
                                         controller.changeListSort(value!),

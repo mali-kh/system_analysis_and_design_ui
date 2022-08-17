@@ -10,8 +10,6 @@ Future<void> main() async {
   // await initServices();
   runApp(
     GetMaterialApp(
-      // theme: ,
-      // initialRoute: Routes.HOME,
       initialRoute: Routes.HOME,
       getPages: AppPages.pages,
       builder: EasyLoading.init(),

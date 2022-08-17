@@ -1,7 +1,7 @@
-import 'package:system_analysis_and_design_project/app/modules/file_info/page.dart';
-import 'package:system_analysis_and_design_project/app/modules/register/info/page.dart';
-import 'package:system_analysis_and_design_project/app/modules/register/password/page.dart';
-
+import '../modules/file_info/page.dart';
+import '../modules/profile/page.dart';
+import '../modules/register/info/page.dart';
+import '../modules/register/password/page.dart';
 import '../modules/home/page.dart';
 import '../modules/introduction/page.dart';
 import '../modules/login/page.dart';
@@ -44,6 +44,10 @@ class AppPages {
     GetPage(
       name: Routes.FILE_INFO,
       page: () => FileInfoPage(),
+    ),
+    GetPage(
+      name: Routes.PROFILE,
+      page: () => ProfilePage(),
     ),
   ];
 }
