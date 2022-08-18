@@ -5,12 +5,14 @@ class InfoRow extends StatelessWidget {
   final IconData icon;
   final String title;
   final String description;
+  final bool hasIcon;
   const InfoRow({
     Key? key,
     required this.color,
     required this.icon,
     required this.title,
     required this.description,
+    this.hasIcon = true,
   }) : super(key: key);
 
   @override
@@ -24,14 +26,16 @@ class InfoRow extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                icon,
-                size: 22,
-                color: color,
-              ),
-              SizedBox(
-                width: 7,
-              ),
+              if (hasIcon)
+                Icon(
+                  icon,
+                  size: 22,
+                  color: color,
+                ),
+              if (hasIcon)
+                SizedBox(
+                  width: 7,
+                ),
               Text(
                 title,
                 style: TextStyle(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/add_info_dialog.dart';
 import 'package:system_analysis_and_design_project/app/models/file.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
 import 'package:system_analysis_and_design_project/app/modules/file_info/local_widgets/info_row.dart';
@@ -91,6 +92,7 @@ class FileInfoPage extends StatelessWidget {
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 17, vertical: 10),
                 child: ListView(
+                  physics: NeverScrollableScrollPhysics(),
                   children: [
                     InfoRow(
                       color: theme.primaryColor,
@@ -156,12 +158,15 @@ class FileInfoPage extends StatelessWidget {
                               borderType: BorderType.RRect,
                               radius: Radius.circular(12),
                               padding: EdgeInsets.symmetric(
-                                  vertical: 3, horizontal: 10),
+                                vertical: 3,
+                                horizontal: 10,
+                              ),
                               dashPattern: [2],
                               color: theme.primaryColor,
                               child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12),
+                                ),
                                 child: Row(
                                   children: [
                                     Icon(
@@ -182,6 +187,29 @@ class FileInfoPage extends StatelessWidget {
                                   ],
                                   mainAxisSize: MainAxisSize.min,
                                 ),
+                                // child: Container(
+                                //   width: 100,
+                                //   child: IntrinsicHeight(
+                                //     child: Stack(
+                                //       children: [
+                                //         Positioned(
+                                //           left: 0,
+                                //           child: Icon(
+                                //             Icons.add_rounded,
+                                //             size: 15,
+                                //             color: theme.primaryColor,
+                                //           ),
+                                //         ),
+                                //         Align(
+                                //           child: Text(
+                                //             'Add to Library',
+                                //             style: TextStyle(fontSize: 10),
+                                //           ),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
                               ),
                             ),
                           ),
@@ -234,11 +262,68 @@ class FileInfoPage extends StatelessWidget {
                       height: 10,
                     ),
                     ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 2,
+                      itemCount: file.additionalInfos.length,
                       itemBuilder: (context, index) {
-                        return Container();
+                        return InfoRow(
+                          color: theme.primaryColor,
+                          icon: Icons.abc,
+                          title: file.additionalInfos.keys.elementAt(index),
+                          description:
+                              file.additionalInfos.values.elementAt(index),
+                          hasIcon: false,
+                        );
                       },
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AddInfoDialog();
+                          },
+                        );
+                      },
+                      child: DottedBorder(
+                        borderType: BorderType.RRect,
+                        radius: Radius.circular(12),
+                        padding: EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                          bottom: 5,
+                          top: 3,
+                        ),
+                        dashPattern: [2],
+                        color: theme.primaryColor,
+                        child: IntrinsicHeight(
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                left: 0,
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Icon(
+                                    Icons.add_rounded,
+                                    size: 15,
+                                    color: theme.primaryColor,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                child: Text(
+                                  'Add info',
+                                  style: TextStyle(fontSize: 10),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -248,81 +333,6 @@ class FileInfoPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
         ),
       ),
-
-      // body: Column(
-      //   children: [
-      //     Stack(
-      //       children: [
-      //         Container(
-      //           width: mq.size.width,
-      //           height: mq.size.height * 0.1,
-      //           decoration: BoxDecoration(
-      //             color: theme.hintColor.withOpacity(0.6),
-      //             borderRadius: BorderRadius.vertical(
-      //               bottom: Radius.circular(20),
-      //             ),
-      //           ),
-      //         ),
-      //         ClipRRect(
-      //           borderRadius: BorderRadius.vertical(
-      //             bottom: Radius.circular(20),
-      //           ),
-      //           child: BackdropFilter(
-      //             filter: ImageFilter.blur(
-      //               sigmaX: 100,
-      //               sigmaY: 100,
-      //             ),
-      //             child: Container(
-      //               width: mq.size.width,
-      //               height: mq.size.height * 0.1,
-      //               decoration: BoxDecoration(
-      //                 color: Colors.white.withOpacity(0.5),
-      //                 // borderRadius: BorderRadius.vertical(
-      //                 //   bottom: Radius.circular(30),
-      //                 // ),
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //         Padding(
-      //           padding: EdgeInsets.only(
-      //             top: mq.size.height * 0.05,
-      //           ),
-      //           child: Stack(
-      //             children: [
-      //               Positioned(
-      //                 left: 0,
-      //                 child: Row(
-      //                   children: [
-      //                     Icon(
-      //                       Icons.chevron_left,
-      //                     ),
-      //                     SizedBox(
-      //                       width: 0,
-      //                     ),
-      //                     Text(
-      //                       "Back",
-      //                     ),
-      //                   ],
-      //                   mainAxisSize: MainAxisSize.min,
-      //                 ),
-      //               ),
-      //               Align(
-      //                 child: Text(
-      //                   "Info",
-      //                   style: TextStyle(
-      //                     color: theme.primaryColor,
-      //                     fontSize: 22,
-      //                   ),
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //         )
-      //       ],
-      //     )
-      //   ],
-      // ),
     );
   }
 }

@@ -9,7 +9,9 @@ final files_dummy = [
     uploadedDate: DateTime(2022, 05, 03),
     size: 53452345,
     type: FileType.DOCUMENT,
-    additionalInfos: {},
+    additionalInfos: {
+      "asdf": "asdf",
+    },
     attachments: [],
     isAttachment: false,
     hasAttachments: true,
