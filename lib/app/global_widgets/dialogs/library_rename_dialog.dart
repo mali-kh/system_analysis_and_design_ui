@@ -1,37 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
-import 'package:system_analysis_and_design_project/app/models/file.dart';
 
 import 'components/dialog_cancel_button.dart';
 import 'components/dialog_header.dart';
 import 'components/dialog_submit_button.dart';
 
-class FileRenameDialog extends StatefulWidget {
-  final String fileName;
-  const FileRenameDialog({
+class LibraryRenameDialog extends StatefulWidget {
+  final String libraryName;
+  const LibraryRenameDialog({
     Key? key,
-    required this.fileName,
+    required this.libraryName,
   }) : super(key: key);
 
   @override
-  State<FileRenameDialog> createState() => _FileRenameDialogState();
+  State<LibraryRenameDialog> createState() => _LibraryRenameDialogState();
 }
 
-class _FileRenameDialogState extends State<FileRenameDialog> {
-  late TextEditingController _controller;
+class _LibraryRenameDialogState extends State<LibraryRenameDialog> {
+  late final _controller;
   final _focusNode = FocusNode();
   initState() {
     super.initState();
     _controller = TextEditingController(
-      text: widget.fileName,
+      text: widget.libraryName,
     );
     _focusNode.requestFocus();
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
         _controller.selection = TextSelection(
           baseOffset: 0,
-          extentOffset: File.getWOExtension(widget.fileName).length,
+          extentOffset: widget.libraryName.length,
         );
       }
     });
@@ -54,8 +52,8 @@ class _FileRenameDialogState extends State<FileRenameDialog> {
       title: DialogHeader(
           // iconColor: theme.primaryColor,
           icon: FontAwesomeIcons.pen,
-          title: "Rename File",
-          subtitle: "Enter new name for the file"),
+          title: "Rename Library",
+          subtitle: "Enter new name for the library"),
       alignment: Alignment.center,
       content: TextField(
         controller: _controller,

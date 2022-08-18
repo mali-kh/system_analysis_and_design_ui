@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
 import 'package:system_analysis_and_design_project/app/modules/home/controllers/fab_controller.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/local_widgets/library_card.dart';
 
 import '../../controllers/files_controller.dart';
 import '../../controllers/libraries_controller.dart';
@@ -206,114 +207,9 @@ class HomePage extends StatelessWidget {
                                   itemCount: dummy_libraries.length,
                                   shrinkWrap: true,
                                   itemBuilder: (_, idx) {
-                                    return ClipRRect(
-                                      borderRadius: BorderRadius.circular(
-                                        8,
-                                      ),
-                                      child: BackdropFilter(
-                                        filter: new ImageFilter.blur(
-                                          sigmaX: 1.7,
-                                          sigmaY: 1.7,
-                                        ),
-                                        child: Container(
-                                          decoration: new BoxDecoration(
-                                            color: dummy_libraries[idx]
-                                                .type
-                                                .secondaryColor
-                                                .withOpacity(0.5),
-                                          ),
-                                          width: 140,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 10,
-                                              left: 10,
-                                              bottom: 10,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                      'assets/svgs/folder_icon.svg',
-                                                      height: 30,
-                                                      color:
-                                                          dummy_libraries[idx]
-                                                              .type
-                                                              .primaryColor,
-                                                    ),
-                                                    PopupMenuButton(
-                                                      child: Icon(
-                                                        Icons.more_vert,
-                                                        size: 20,
-                                                      ),
-                                                      itemBuilder: (ctx) => [],
-                                                    ),
-                                                  ],
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Text(
-                                                    dummy_libraries[idx].name,
-                                                    style: TextStyle(
-                                                      color: theme.primaryColor,
-                                                      fontSize: 15,
-                                                    ),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      dummy_libraries[idx]
-                                                              .numberOfItems
-                                                              .toString() +
-                                                          " items",
-                                                      style: TextStyle(
-                                                        color:
-                                                            theme.primaryColor,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                        fontSize: 11,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 10),
-                                                      child: Icon(
-                                                        dummy_libraries[idx]
-                                                            .type
-                                                            .icon,
-                                                        color:
-                                                            dummy_libraries[idx]
-                                                                .type
-                                                                .primaryColor,
-                                                        size: 10,
-                                                      ),
-                                                    )
-                                                  ],
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                    return LibraryCard(
+                                      theme: theme,
+                                      library: dummy_libraries[idx],
                                     );
                                   },
                                   scrollDirection: Axis.horizontal,
@@ -334,13 +230,6 @@ class HomePage extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          // Text(
-                          //   "All Files",
-                          //   style: TextStyle(
-                          //     color: theme.primaryColor,
-                          //     fontSize: 20,
-                          //   ),
-                          // ),
                           TitleText(
                             text: "All Files",
                             theme: theme,
@@ -629,7 +518,9 @@ class HomePage extends StatelessWidget {
           distanceBetween: 80,
           subChildren: [
             FABActionButton(
-              onTap: () {},
+              onTap: () {
+                Get.find<FABController>().toggleOpen();
+              },
               icon: CustomIcons.library_icon,
               text: "Create Library",
             ),

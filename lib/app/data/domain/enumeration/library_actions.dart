@@ -1,0 +1,1 @@
+enum LibraryAction { RENAME, DELETE }

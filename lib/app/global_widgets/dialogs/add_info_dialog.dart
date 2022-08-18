@@ -20,6 +20,12 @@ class _AddInfoDialogState extends State<AddInfoDialog> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    titleFocus.dispose();
+    super.dispose();
+  }
+
   void submit() {}
   @override
   Widget build(BuildContext context) {
