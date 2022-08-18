@@ -18,6 +18,7 @@ Future<void> main() async {
         primaryColor: Color(0xff115046),
         cardColor: Color(0xffE1E1E1),
         hintColor: Color(0xff5BC2AA),
+        hoverColor: Color(0xffD1F5F0),
       ),
       debugShowCheckedModeBanner: false,
     ),

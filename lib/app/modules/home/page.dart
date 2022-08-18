@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/controllers/fab_controller.dart';
 
 import '../../controllers/files_controller.dart';
 import '../../controllers/libraries_controller.dart';
@@ -19,6 +21,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _mq = MediaQuery.of(context);
     final theme = Theme.of(context);
+    // final ExpandableFabClass fab = ;
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -625,8 +628,18 @@ class HomePage extends StatelessWidget {
         floatingActionButton: ExpandableFabClass(
           distanceBetween: 80,
           subChildren: [
-            Text("asdf"),
-            Text("Asdf"),
+            FABActionButton(
+              onTap: () {},
+              icon: CustomIcons.library_icon,
+              text: "Create Library",
+            ),
+            FABActionButton(
+              onTap: () {
+                Get.find<FABController>().toggleOpen();
+              },
+              icon: CustomIcons.file_type,
+              text: "Upload File",
+            ),
           ],
         ),
         // floatingActionButton: FloatingActionButton(onPressed: () {}),
