@@ -4,6 +4,7 @@ import 'package:system_analysis_and_design_project/app/models/file_types.dart';
 
 final files_dummy = [
   File(
+    id: 1,
     name: "SAD Final Exam.docs",
     uploadedDate: DateTime(2022, 05, 03),
     size: 53452345,
@@ -15,6 +16,7 @@ final files_dummy = [
     isSharedWithMe: false,
   ),
   File(
+    id: 2,
     name: "SAD Final Exam.docs",
     uploadedDate: DateTime(2022, 05, 03),
     size: 52345234512,
@@ -26,6 +28,7 @@ final files_dummy = [
     isSharedWithMe: true,
   ),
   File(
+    id: 3,
     name: "SAD Final Exam.docs",
     uploadedDate: DateTime(2022, 01, 03),
     size: 53412,
@@ -38,6 +41,7 @@ final files_dummy = [
     library: dummy_libraries[0],
   ),
   File(
+    id: 4,
     name: "SAD Final Exam.docs",
     uploadedDate: DateTime(2022, 05, 03),
     size: 23816723546710,

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/dialog_cancel_button.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/dialog_header.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/dialog_submit_button.dart';
 import 'package:system_analysis_and_design_project/app/models/file.dart';
 
 class FileRenameDialog extends StatefulWidget {
-  final Color buttonColor;
   final String fileName;
   const FileRenameDialog({
     Key? key,
-    required this.buttonColor,
     required this.fileName,
   }) : super(key: key);
 
@@ -53,75 +54,23 @@ class _FileRenameDialogState extends State<FileRenameDialog> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      title: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FaIcon(
-            FontAwesomeIcons.pen,
-            size: 20,
-            color: widget.buttonColor,
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Rename File",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-              Text(
-                "Enter new name for the file",
-                style: TextStyle(fontSize: 13, color: Colors.grey),
-              )
-            ],
-          ),
-        ],
-      ),
+      title: DialogHeader(
+          icon: FontAwesomeIcons.pen,
+          title: "Rename File",
+          subtitle: "Enter new name for the file"),
       alignment: Alignment.center,
       content: TextField(
         controller: _controller,
         focusNode: _focusNode,
       ),
       actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text(
-            "Cancel",
-            style: TextStyle(
-              color: Colors.red,
-              fontSize: 12,
-            ),
-          ),
-        ),
-        TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: widget.buttonColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                7,
-              ),
-            ),
-            // padding: EdgeInsets.all(),
-          ),
-          onPressed: () {},
-          child: Text(
-            "Rename",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 15,
-            ),
-          ),
-        )
+        DialogCancelButton(),
+        DialogSubmitButton(text: "Rename"),
       ],
     );
   }

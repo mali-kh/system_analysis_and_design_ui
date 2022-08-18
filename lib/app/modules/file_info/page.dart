@@ -1,9 +1,8 @@
-import 'dart:ui';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/add_to_library_dialog.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
 import 'package:system_analysis_and_design_project/app/models/file.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
@@ -11,7 +10,7 @@ import 'package:system_analysis_and_design_project/app/modules/file_info/local_w
 import 'package:dotted_border/dotted_border.dart';
 
 class FileInfoPage extends StatelessWidget {
-  File file = Get.arguments as File;
+  final File file = Get.arguments as File;
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +141,16 @@ class FileInfoPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             behavior: HitTestBehavior.translucent,
-                            onTap: () {},
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AddToLibraryDialog(
+                                    fileType: file.type,
+                                  );
+                                },
+                              );
+                            },
                             child: DottedBorder(
                               borderType: BorderType.RRect,
                               radius: Radius.circular(12),

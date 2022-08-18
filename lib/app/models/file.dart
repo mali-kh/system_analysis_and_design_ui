@@ -4,6 +4,7 @@ import 'package:system_analysis_and_design_project/app/models/file_types.dart';
 import 'package:system_analysis_and_design_project/app/models/library.dart';
 
 class File {
+  int id;
   String name;
   DateTime uploadedDate;
   Library? library;
@@ -16,6 +17,7 @@ class File {
   bool isSharedWithMe;
 
   File({
+    required this.id,
     required this.name,
     required this.uploadedDate,
     this.library,

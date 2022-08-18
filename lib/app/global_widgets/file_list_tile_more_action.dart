@@ -138,7 +138,6 @@ class FileListTileMoreAction extends StatelessWidget {
                               context: context,
                               builder: (context) {
                                 return FileRenameDialog(
-                                  buttonColor: theme.primaryColor,
                                   fileName: file.name,
                                 );
                               },
