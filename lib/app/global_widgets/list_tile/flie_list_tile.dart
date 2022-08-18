@@ -1,10 +1,11 @@
+import 'dart:math' as math;
+
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
-import 'package:system_analysis_and_design_project/app/global_widgets/file_list_tile_header.dart';
-import 'dart:math' as math;
-
 import 'package:system_analysis_and_design_project/app/models/file.dart';
+
+import './file_list_tile_header.dart';
 
 class FileListTile extends StatefulWidget {
   final MediaQueryData mq;

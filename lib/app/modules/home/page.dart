@@ -1,27 +1,18 @@
-import 'package:expandable/expandable.dart';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:system_analysis_and_design_project/app/controllers/files_controller.dart';
-import 'dart:ui';
-import 'dart:math' as math;
 
-import 'package:system_analysis_and_design_project/app/controllers/libraries_controller.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/flie_list_tile.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/title_text.dart';
-import 'package:system_analysis_and_design_project/app/models/file_types.dart';
-import 'package:system_analysis_and_design_project/app/models/list_sort.dart';
-import 'package:system_analysis_and_design_project/app/modules/home/controllers/filter_contorller.dart';
-import 'package:system_analysis_and_design_project/app/routes/routes.dart';
-
-// class HomePage extends StatefulWidget {
-//   const HomePage({Key? key}) : super(key: key);
-
-//   @override
-//   State<HomePage> createState() => _HomePageState();
-// }
+import '../../controllers/files_controller.dart';
+import '../../controllers/libraries_controller.dart';
+import '../../global_widgets/title_text.dart';
+import '../../models/file_types.dart';
+import '../../models/list_sort.dart';
+import '../../modules/home/controllers/filter_contorller.dart';
+import '../../routes/routes.dart';
+import '../../global_widgets/list_tile/flie_list_tile.dart';
+import 'local_widgets/expandable_fab.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -631,6 +622,14 @@ class HomePage extends StatelessWidget {
           alignment: Alignment.topRight,
           clipBehavior: Clip.hardEdge,
         ),
+        floatingActionButton: ExpandableFabClass(
+          distanceBetween: 80,
+          subChildren: [
+            Text("asdf"),
+            Text("Asdf"),
+          ],
+        ),
+        // floatingActionButton: FloatingActionButton(onPressed: () {}),
       ),
     );
   }

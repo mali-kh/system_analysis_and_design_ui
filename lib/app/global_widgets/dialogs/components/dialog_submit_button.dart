@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 class DialogSubmitButton extends StatelessWidget {
   final String text;
+  final Color buttonColor;
+  final VoidCallback onPressed;
   const DialogSubmitButton({
     Key? key,
     required this.text,
+    required this.buttonColor,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -12,7 +16,7 @@ class DialogSubmitButton extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     return TextButton(
       style: TextButton.styleFrom(
-        backgroundColor: theme.primaryColor,
+        backgroundColor: buttonColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             7,
@@ -20,7 +24,7 @@ class DialogSubmitButton extends StatelessWidget {
         ),
         // padding: EdgeInsets.all(),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(
         text,
         style: TextStyle(

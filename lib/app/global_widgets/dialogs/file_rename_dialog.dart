@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/dialog_cancel_button.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/dialog_header.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/dialog_submit_button.dart';
 import 'package:system_analysis_and_design_project/app/models/file.dart';
+
+import 'components/dialog_cancel_button.dart';
+import 'components/dialog_header.dart';
+import 'components/dialog_submit_button.dart';
 
 class FileRenameDialog extends StatefulWidget {
   final String fileName;
@@ -60,6 +61,7 @@ class _FileRenameDialogState extends State<FileRenameDialog> {
         borderRadius: BorderRadius.circular(10),
       ),
       title: DialogHeader(
+          // iconColor: theme.primaryColor,
           icon: FontAwesomeIcons.pen,
           title: "Rename File",
           subtitle: "Enter new name for the file"),
@@ -70,7 +72,11 @@ class _FileRenameDialogState extends State<FileRenameDialog> {
       ),
       actions: [
         DialogCancelButton(),
-        DialogSubmitButton(text: "Rename"),
+        DialogSubmitButton(
+          onPressed: () {},
+          text: "Rename",
+          buttonColor: theme.primaryColor,
+        ),
       ],
     );
   }

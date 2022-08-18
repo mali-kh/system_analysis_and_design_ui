@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/delete_file_dialog.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/share_file_dialog.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/file_bottom_sheet_item.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/file_list_tile_info_text.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/file_rename_dialog.dart';
 import 'package:system_analysis_and_design_project/app/models/file.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
+
+import '../dialogs/file_rename_dialog.dart';
+import 'file_list_tile_info_text.dart';
 
 class FileListTileMoreAction extends StatelessWidget {
   final ThemeData theme;
@@ -151,6 +154,10 @@ class FileListTileMoreAction extends StatelessWidget {
                           text: "Share",
                           onTap: () {
                             Navigator.pop(context);
+                            showDialog(
+                              context: context,
+                              builder: (context) => ShareDialog(),
+                            );
                           },
                         ),
                         FileBottomSheetItem(
@@ -171,6 +178,10 @@ class FileListTileMoreAction extends StatelessWidget {
                           text: "Delete File",
                           onTap: () {
                             Navigator.pop(context);
+                            showDialog(
+                              context: context,
+                              builder: (context) => DeleteFileDialog(),
+                            );
                           },
                           hasDivider: false,
                         ),

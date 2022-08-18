@@ -1,16 +1,15 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/controllers/add_to_library_controller.dart';
 
 import 'package:system_analysis_and_design_project/app/controllers/libraries_controller.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/dialog_cancel_button.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/dialog_header.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/dialog_submit_button.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
 
-import '../models/library.dart';
+import '../../models/library.dart';
+import 'components/dialog_cancel_button.dart';
+import 'components/dialog_header.dart';
+import 'components/dialog_submit_button.dart';
 
 class AddToLibraryDialog extends StatefulWidget {
   final FileType fileType;
@@ -40,7 +39,6 @@ class _AddToLibraryDialogState extends State<AddToLibraryDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mq = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
     return AlertDialog(
       shape: RoundedRectangleBorder(
@@ -107,7 +105,12 @@ class _AddToLibraryDialogState extends State<AddToLibraryDialog> {
             ),
       actions: [
         DialogCancelButton(),
-        if (doesHaveLibrariesToChoose) DialogSubmitButton(text: "Add"),
+        if (doesHaveLibrariesToChoose)
+          DialogSubmitButton(
+            onPressed: () {},
+            text: "Add",
+            buttonColor: theme.primaryColor,
+          ),
       ],
     );
   }

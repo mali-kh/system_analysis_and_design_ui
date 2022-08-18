@@ -1,14 +1,14 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/file_list_tile_icon.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/file_list_tile_info_text.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/file_list_tile_more_action.dart';
 
 import 'package:system_analysis_and_design_project/app/global_widgets/library_chip.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/shared_with_you_chip.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
 
-import '../models/file.dart';
+import '../../models/file.dart';
+import 'file_list_tile_icon.dart';
+import 'file_list_tile_info_text.dart';
+import 'file_list_tile_more_action.dart';
 
 class FileListTileHeader extends StatelessWidget {
   final MediaQueryData mq;

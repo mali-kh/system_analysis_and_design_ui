@@ -2,12 +2,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:system_analysis_and_design_project/app/global_widgets/add_to_library_dialog.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
 import 'package:system_analysis_and_design_project/app/models/file.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
 import 'package:system_analysis_and_design_project/app/modules/file_info/local_widgets/info_row.dart';
 import 'package:dotted_border/dotted_border.dart';
+
+import '../../global_widgets/dialogs/add_to_library_dialog.dart';
 
 class FileInfoPage extends StatelessWidget {
   final File file = Get.arguments as File;
