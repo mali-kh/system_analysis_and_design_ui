@@ -1,3 +1,5 @@
+import 'package:system_analysis_and_design_project/app/modules/library/page.dart';
+
 import '../modules/file_info/page.dart';
 import '../modules/profile/page.dart';
 import '../modules/register/info/page.dart';
@@ -48,6 +50,10 @@ class AppPages {
     GetPage(
       name: Routes.PROFILE,
       page: () => ProfilePage(),
+    ),
+    GetPage(
+      name: Routes.LIBRARY,
+      page: () => LibraryPage(),
     ),
   ];
 }

@@ -1,8 +1,8 @@
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
-import '../../../models/list_sort.dart';
+import '../../models/list_sort.dart';
 
-class FilterController extends GetxController {
+class LibrarySortController extends GetxController {
   var sortListDropdownValue = ListSort.DATEUPLOADED;
   bool sortAscending = true;
 

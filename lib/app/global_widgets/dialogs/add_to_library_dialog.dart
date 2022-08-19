@@ -51,23 +51,24 @@ class _AddToLibraryDialogState extends State<AddToLibraryDialog> {
       ),
       alignment: Alignment.center,
       content: doesHaveLibrariesToChoose
-          ? DropdownButtonHideUnderline(
-              child: GetBuilder<AddToLibraryController>(
-                builder: (controller) {
-                  return DropdownButton<Library>(
-                    items: canBeChosenLibraries.map((value) {
+          ? GetBuilder<AddToLibraryController>(
+              builder: (controller) {
+                return DropdownButton<Library>(
+                  isExpanded: true,
+                  items: canBeChosenLibraries.map(
+                    (value) {
                       return DropdownMenuItem(
                         child: Text(value.name),
                         value: value,
                       );
-                    }).toList(),
-                    value: controller.selectedLibrary,
-                    onChanged: (value) {
-                      controller.changeSelectedLibrary(value!);
                     },
-                  );
-                },
-              ),
+                  ).toList(),
+                  value: controller.selectedLibrary,
+                  onChanged: (value) {
+                    controller.changeSelectedLibrary(value!);
+                  },
+                );
+              },
             )
           : Column(
               mainAxisSize: MainAxisSize.min,

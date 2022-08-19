@@ -12,4 +12,5 @@ class Routes {
   static const PROFILE = '/profile';
   static const BILL = '/bill';
   static const FILE_INFO = '/file-info';
+  static const LIBRARY = '/library';
 }

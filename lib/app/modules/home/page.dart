@@ -12,7 +12,7 @@ import '../../controllers/libraries_controller.dart';
 import '../../global_widgets/title_text.dart';
 import '../../models/file_types.dart';
 import '../../models/list_sort.dart';
-import '../../modules/home/controllers/filter_contorller.dart';
+import 'controllers/home_sort_controller.dart';
 import '../../routes/routes.dart';
 import '../../global_widgets/list_tile/flie_list_tile.dart';
 import 'local_widgets/expandable_fab.dart';
@@ -243,8 +243,8 @@ class HomePage extends StatelessWidget {
                               SizedBox(
                                 width: 5,
                               ),
-                              GetBuilder<FilterController>(
-                                init: FilterController(),
+                              GetBuilder<HomeSortController>(
+                                init: HomeSortController(),
                                 builder: (controller) =>
                                     DropdownButtonHideUnderline(
                                   child: DropdownButton<ListSort>(
@@ -275,8 +275,8 @@ class HomePage extends StatelessWidget {
                               SizedBox(
                                 height: 15,
                                 width: 15,
-                                child: GetBuilder<FilterController>(
-                                  init: FilterController(),
+                                child: GetBuilder<HomeSortController>(
+                                  init: HomeSortController(),
                                   builder: (controller) => IconButton(
                                     padding: EdgeInsets.all(0),
                                     splashRadius: 15,
