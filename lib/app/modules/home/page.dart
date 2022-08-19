@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/create_library_dialog.dart';
 import 'package:system_analysis_and_design_project/app/modules/home/controllers/fab_controller.dart';
 import 'package:system_analysis_and_design_project/app/modules/home/local_widgets/library_card.dart';
 
@@ -520,6 +521,10 @@ class HomePage extends StatelessWidget {
             FABActionButton(
               onTap: () {
                 Get.find<FABController>().toggleOpen();
+                showDialog(
+                  context: context,
+                  builder: (context) => CreateLibraryDialog(),
+                );
               },
               icon: CustomIcons.library_icon,
               text: "Create Library",

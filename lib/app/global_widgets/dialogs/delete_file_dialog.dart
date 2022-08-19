@@ -7,7 +7,6 @@ import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/co
 class DeleteFileDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
     return AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),

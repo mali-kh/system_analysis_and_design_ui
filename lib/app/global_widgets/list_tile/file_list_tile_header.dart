@@ -1,5 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/file_type_container.dart';
 
 import 'package:system_analysis_and_design_project/app/global_widgets/library_chip.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/shared_with_you_chip.dart';
@@ -33,21 +34,8 @@ class FileListTileHeader extends StatelessWidget {
         children: [
           Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Container(
-                  decoration: BoxDecoration(
-                    // color: Color(0xff66DCCC).withOpacity(0.5),
-                    color: file.type.secondaryColor.withOpacity(0.5),
-                  ),
-                  height: 35,
-                  width: 35,
-                  child: Icon(
-                    file.type.icon,
-                    color: file.type.primaryColor,
-                    size: 18,
-                  ),
-                ),
+              FileTypeContainer(
+                fileType: file.type,
               ),
               Padding(
                 padding: EdgeInsets.only(

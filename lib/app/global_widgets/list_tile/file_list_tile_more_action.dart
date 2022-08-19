@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/add_to_library_dialog.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/delete_file_dialog.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/share_file_dialog.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/file_bottom_sheet_item.dart';
@@ -167,9 +168,20 @@ class FileListTileMoreAction extends StatelessWidget {
                           text: file.library != null
                               ? "Remove from Library"
                               : "Add to Library",
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
+                          onTap: file.library != null
+                              ? () {
+                                  Navigator.pop(context);
+                                  //TODO: remove from library
+                                }
+                              : () {
+                                  Navigator.pop(context);
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AddToLibraryDialog(
+                                      fileType: file.type,
+                                    ),
+                                  );
+                                },
                         ),
                         FileBottomSheetItem(
                           mq: mq,
