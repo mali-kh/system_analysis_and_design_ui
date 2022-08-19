@@ -12,7 +12,20 @@ final files_dummy = [
     additionalInfos: {
       "asdf": "asdf",
     },
-    attachments: [],
+    attachments: [
+      File(
+        id: 6,
+        name: "Sub.srt",
+        uploadedDate: DateTime(2002),
+        size: 10,
+        type: FileType.AUDIO,
+        additionalInfos: {},
+        isAttachment: true,
+        hasAttachments: false,
+        attachments: [],
+        isSharedWithMe: false,
+      )
+    ],
     isAttachment: false,
     hasAttachments: true,
     isSharedWithMe: false,

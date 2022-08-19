@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/create_library_dialog.dart';
+import 'package:system_analysis_and_design_project/app/global_widgets/files_list.dart';
 import 'package:system_analysis_and_design_project/app/modules/home/controllers/fab_controller.dart';
 import 'package:system_analysis_and_design_project/app/modules/home/local_widgets/library_card.dart';
 
@@ -315,24 +316,28 @@ class HomePage extends StatelessWidget {
                     //     ),
                     //   ],
                     // ),
-
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: files_dummy.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () => print("HSDF"),
-                            behavior: HitTestBehavior.translucent,
-                            child: FileListTile(
-                              mq: _mq,
-                              theme: theme,
-                              file: files_dummy[index],
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) => Divider(),
-                      ),
-                    )
+                    FilesListView(
+                      files: files_dummy,
+                      mq: _mq,
+                      theme: theme,
+                    ),
+                    // Expanded(
+                    //   child: ListView.separated(
+                    //     itemCount: files_dummy.length,
+                    //     itemBuilder: (context, index) {
+                    //       return GestureDetector(
+                    //         onTap: () => print("HSDF"),
+                    //         behavior: HitTestBehavior.translucent,
+                    //         child: FileListTile(
+                    //           mq: _mq,
+                    //           theme: theme,
+                    //           file: files_dummy[index],
+                    //         ),
+                    //       );
+                    //     },
+                    //     separatorBuilder: (context, index) => Divider(),
+                    //   ),
+                    // )
                     // ExpandablePanel(
                     //   // controller: ExpandableController(),
                     //   theme: ExpandableThemeData(
