@@ -6,17 +6,15 @@ import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/create_library_dialog.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/files_list.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/controller.dart';
 import 'package:system_analysis_and_design_project/app/modules/home/controllers/fab_controller.dart';
 import 'package:system_analysis_and_design_project/app/modules/home/local_widgets/library_card.dart';
 
 import '../../controllers/files_controller.dart';
-import '../../controllers/libraries_controller.dart';
 import '../../global_widgets/title_text.dart';
-import '../../models/file_types.dart';
 import '../../models/list_sort.dart';
 import 'controllers/home_sort_controller.dart';
 import '../../routes/routes.dart';
-import '../../global_widgets/list_tile/flie_list_tile.dart';
 import 'local_widgets/expandable_fab.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,6 +23,8 @@ class HomePage extends StatelessWidget {
     final _mq = MediaQuery.of(context);
     final theme = Theme.of(context);
     // final ExpandableFabClass fab = ;
+
+    HomePageController controller = Get.put(HomePageController());
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -65,8 +65,7 @@ class HomePage extends StatelessWidget {
                                 Hero(
                                   tag: "Pic",
                                   child: CircleAvatar(
-                                    backgroundImage: AssetImage(
-                                        'assets/images/sample_profile.jpg'),
+                                    backgroundImage: AssetImage('assets/images/sample_profile.jpg'),
                                     minRadius: _mq.size.width * 0.075,
                                   ),
                                 ),
@@ -76,8 +75,7 @@ class HomePage extends StatelessWidget {
                                 Container(
                                   width: _mq.size.width * 0.2,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -95,12 +93,14 @@ class HomePage extends StatelessWidget {
                                       SizedBox(
                                         height: 5,
                                       ),
-                                      Text(
-                                        "Satya",
-                                        textAlign: TextAlign.left,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          color: theme.hintColor,
+                                      Obx(
+                                        () => Text(
+                                          controller.firstName.value,
+                                          textAlign: TextAlign.left,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            color: theme.hintColor,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -129,17 +129,14 @@ class HomePage extends StatelessWidget {
                                     textAlign: TextAlign.left,
                                     textAlignVertical: TextAlignVertical.center,
                                     decoration: InputDecoration(
-                                      fillColor:
-                                          Color(0xffD1F5F0).withOpacity(0.5),
+                                      fillColor: Color(0xffD1F5F0).withOpacity(0.5),
                                       filled: true,
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.white),
+                                        borderSide: BorderSide(color: Colors.white),
                                         borderRadius: BorderRadius.circular(6),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.white),
+                                        borderSide: BorderSide(color: Colors.white),
                                         borderRadius: BorderRadius.circular(6),
                                       ),
                                       border: InputBorder.none,
@@ -180,48 +177,49 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    Stack(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/svgs/libraries_background.svg',
-                          width: _mq.size.width,
-                          color: Color(0xff5BC2AA),
-                          height: 140,
-                          fit: BoxFit.cover,
-                        ),
-                        Positioned.fill(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: SizedBox(
-                              height: 105,
-                              width: _mq.size.width,
-                              child: RefreshIndicator(
-                                onRefresh: () {
-                                  print("hello");
-                                  return Future.delayed(Duration(seconds: 2));
-                                },
-                                child: ListView.separated(
-                                  separatorBuilder: (context, index) =>
-                                      SizedBox(
-                                    width: 10,
-                                  ),
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
-                                  itemCount: dummy_libraries.length,
-                                  shrinkWrap: true,
-                                  itemBuilder: (_, idx) {
-                                    return LibraryCard(
-                                      theme: theme,
-                                      library: dummy_libraries[idx],
-                                    );
+                    Obx(
+                      () => Stack(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svgs/libraries_background.svg',
+                            width: _mq.size.width,
+                            color: Color(0xff5BC2AA),
+                            height: 140,
+                            fit: BoxFit.cover,
+                          ),
+                          Positioned.fill(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                height: 105,
+                                width: _mq.size.width,
+                                child: RefreshIndicator(
+                                  onRefresh: () {
+                                    print("hello");
+                                    return Future.delayed(Duration(seconds: 2));
                                   },
-                                  scrollDirection: Axis.horizontal,
-                                  physics: BouncingScrollPhysics(),
+                                  child: ListView.separated(
+                                    separatorBuilder: (context, index) => SizedBox(
+                                      width: 10,
+                                    ),
+                                    padding: EdgeInsets.symmetric(horizontal: 15),
+                                    itemCount: controller.libraries.length,
+                                    shrinkWrap: true,
+                                    itemBuilder: (_, idx) {
+                                      return LibraryCard(
+                                        theme: theme,
+                                        library: controller.libraries[idx],
+                                      );
+                                    },
+                                    scrollDirection: Axis.horizontal,
+                                    physics: BouncingScrollPhysics(),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 10,
@@ -247,8 +245,7 @@ class HomePage extends StatelessWidget {
                               ),
                               GetBuilder<HomeSortController>(
                                 init: HomeSortController(),
-                                builder: (controller) =>
-                                    DropdownButtonHideUnderline(
+                                builder: (controller) => DropdownButtonHideUnderline(
                                   child: DropdownButton<ListSort>(
                                     elevation: 2,
                                     style: TextStyle(
@@ -264,8 +261,7 @@ class HomePage extends StatelessWidget {
                                           ),
                                         )
                                         .toList(),
-                                    onChanged: (value) =>
-                                        controller.changeListSort(value!),
+                                    onChanged: (value) => controller.changeListSort(value!),
                                     iconSize: 0,
                                     value: controller.sortListDropdownValue,
                                   ),
@@ -287,9 +283,7 @@ class HomePage extends StatelessWidget {
                                       controller.changeSortDirection();
                                     },
                                     icon: Icon(
-                                      controller.sortAscending
-                                          ? Icons.arrow_downward_rounded
-                                          : Icons.arrow_upward_rounded,
+                                      controller.sortAscending ? Icons.arrow_downward_rounded : Icons.arrow_upward_rounded,
                                     ),
                                   ),
                                 ),
@@ -316,10 +310,13 @@ class HomePage extends StatelessWidget {
                     //     ),
                     //   ],
                     // ),
-                    FilesListView(
-                      files: files_dummy,
-                      mq: _mq,
-                      theme: theme,
+                    Obx(
+                      () => FilesListView(
+                        //todo: fix this little shit
+                        files: controller.files.value,
+                        mq: _mq,
+                        theme: theme,
+                      ),
                     ),
                     // Expanded(
                     //   child: ListView.separated(
@@ -537,6 +534,7 @@ class HomePage extends StatelessWidget {
             FABActionButton(
               onTap: () {
                 Get.find<FABController>().toggleOpen();
+                controller.uploadFile();
               },
               icon: CustomIcons.file_type,
               text: "Upload File",

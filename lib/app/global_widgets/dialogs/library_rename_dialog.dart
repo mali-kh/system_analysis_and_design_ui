@@ -54,7 +54,8 @@ class _LibraryRenameDialogState extends State<LibraryRenameDialog> {
           icon: FontAwesomeIcons.pen,
           title: "Rename Library",
           subtitle: "Enter new name for the library"),
-      alignment: Alignment.center,
+      //todo: fix the fucking alignment
+      // alignment: Alignment.center,
       content: TextField(
         controller: _controller,
         focusNode: _focusNode,

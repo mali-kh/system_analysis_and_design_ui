@@ -85,7 +85,9 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                           child: TextFormField(
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              controller.username = value;
+                            },
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -127,7 +129,9 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                           child: TextFormField(
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              controller.password = value;
+                            },
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -157,6 +161,7 @@ class LoginPage extends StatelessWidget {
                           onTap: () {
                             //todo: change function
                             Get.toNamed(Routes.LOGIN);
+                            controller.login();
                             // controller.checkUsername();
                           },
                           color: Color.fromRGBO(17, 80, 70, 1),

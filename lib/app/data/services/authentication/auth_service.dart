@@ -22,6 +22,50 @@ class AuthService {
     }
   }
 
+  Future<LoginResponse> login(LoginRequest request) async {
+    try {
+      final Response response = await ApiProvider().post(
+        _client,
+        'login',
+        request.toJson(),
+        authorization: false,
+        showLoading: true,
+      );
+      return LoginResponse.fromJson(response.data);
+    } on DioError {
+      rethrow;
+    }
+  }
+
+  Future<LoginResponse> register(RegisterRequest request) async {
+    try {
+      final Response response = await ApiProvider().post(
+        _client,
+        'register',
+        request.toJson(),
+        authorization: false,
+        showLoading: true,
+      );
+      return LoginResponse.fromJson(response.data);
+    } on DioError {
+      rethrow;
+    }
+  }
+
+  Future<GetUserInfoResponse> getInfo() async {
+    try {
+      final Response response = await ApiProvider().get(
+        _client,
+        'get-info',
+        authorization: true,
+        showLoading: false,
+      );
+      return GetUserInfoResponse.fromJson(response.data);
+    } on DioError {
+      rethrow;
+    }
+  }
+
   ///delete template
 // Future<dynamic> deleteAllOtherSessions(String sessionId) async {
 //   try {

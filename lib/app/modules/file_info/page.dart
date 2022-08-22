@@ -150,6 +150,7 @@ class FileInfoPage extends StatelessWidget {
                                 builder: (context) {
                                   return AddToLibraryDialog(
                                     fileType: file.type,
+                                    file: file,
                                   );
                                 },
                               );
@@ -268,10 +269,10 @@ class FileInfoPage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return InfoRow(
                           color: theme.primaryColor,
-                          icon: Icons.abc,
+                          //todo: fix this little shit (original was abc)
+                          icon: Icons.adb,
                           title: file.additionalInfos.keys.elementAt(index),
-                          description:
-                              file.additionalInfos.values.elementAt(index),
+                          description: file.additionalInfos.values.elementAt(index),
                           hasIcon: false,
                         );
                       },
@@ -285,7 +286,9 @@ class FileInfoPage extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return AddInfoDialog();
+                            return AddInfoDialog(
+                              file: file,
+                            );
                           },
                         );
                       },

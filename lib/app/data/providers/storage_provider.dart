@@ -51,11 +51,11 @@ class StorageProvider {
     await secureStorage.write(key: 'pin', value: pin);
   }
 
-  // ///save accessToken and refreshToken
-  // static Future<void> saveTokens(RefreshTokenResponse token) async {
-  //   await secureStorage.write(key: 'accessToken', value: token.accessToken);
-  //   await secureStorage.write(key: 'refreshToken', value: token.refreshToken);
-  // }
+  ///save accessToken and refreshToken
+  static Future<void> saveTokens(String accessToken, String refreshToken) async {
+    await secureStorage.write(key: 'accessToken', value: accessToken);
+    await secureStorage.write(key: 'refreshToken', value: refreshToken);
+  }
 
   ///delete accessToken and refreshToken
   static Future<void> deleteTokens() async {

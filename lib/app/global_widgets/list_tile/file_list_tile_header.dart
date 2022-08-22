@@ -16,6 +16,7 @@ class FileListTileHeader extends StatelessWidget {
   final ThemeData theme;
   final File file;
   final ExpandableController controller;
+
   const FileListTileHeader({
     required this.mq,
     required this.theme,
@@ -44,8 +45,7 @@ class FileListTileHeader extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      constraints:
-                          BoxConstraints(maxWidth: mq.size.width * 0.5),
+                      constraints: BoxConstraints(maxWidth: mq.size.width * 0.5),
                       child: Text(
                         file.name,
                         style: TextStyle(
@@ -61,8 +61,7 @@ class FileListTileHeader extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          constraints:
-                              BoxConstraints(maxWidth: mq.size.width * 0.3),
+                          constraints: BoxConstraints(maxWidth: mq.size.width * 0.3),
                           child: FileListtileInfoText(
                             size: file.size,
                             uploadedDate: file.uploadedDate,
@@ -72,8 +71,7 @@ class FileListTileHeader extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
-                        if (file.isSharedWithMe)
-                          SharedWithYouChip(theme: theme),
+                        if (file.isSharedWithMe) SharedWithYouChip(theme: theme),
                       ],
                     ),
                   ],
@@ -99,6 +97,7 @@ class FileListTileHeader extends StatelessWidget {
                 hasAttachments: file.hasAttachments,
                 controller: controller,
                 theme: theme,
+                id: file.id,
               )
             ],
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:system_analysis_and_design_project/app/core/values/strings.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
+import 'package:system_analysis_and_design_project/app/modules/register/controller.dart';
 import 'package:system_analysis_and_design_project/app/modules/username/controller.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
@@ -10,6 +11,7 @@ class UsernamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UsernameController controller = Get.put(UsernameController());
+    RegisterController registerController = Get.put(RegisterController());
 
     return Scaffold(
       body: SafeArea(
@@ -85,7 +87,10 @@ class UsernamePage extends StatelessWidget {
                             ),
                           ),
                           child: TextFormField(
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              controller.username = value;
+                              registerController.username = value;
+                            },
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -112,10 +117,7 @@ class UsernamePage extends StatelessWidget {
                         child: SadButton(
                           title: Strings.CONTINUE,
                           onTap: () {
-                            //todo: change function
-                            // Get.toNamed(Routes.LOGIN);
-                            Get.toNamed(Routes.REGISTER_INFO);
-                            // controller.checkUsername();
+                            controller.checkUsername();
                           },
                           color: Color.fromRGBO(17, 80, 70, 1),
                           textColor: Colors.white,

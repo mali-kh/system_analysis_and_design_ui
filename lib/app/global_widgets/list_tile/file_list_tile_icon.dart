@@ -1,15 +1,19 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/controller.dart';
 
 class FileListTileIcon extends StatefulWidget {
   final bool hasAttachments;
   final ExpandableController controller;
   final ThemeData theme;
+  final int id;
   const FileListTileIcon({
     Key? key,
     required this.hasAttachments,
     required this.controller,
     required this.theme,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -49,7 +53,10 @@ class _MyWidgetState extends State<FileListTileIcon> {
                   ),
           )
         : GestureDetector(
-            onTap: () {},
+            onTap: () {
+              HomePageController controller = Get.find();
+              controller.uploadAttachment(widget.id);
+            },
             child: Icon(
               Icons.attach_file,
               size: 20,

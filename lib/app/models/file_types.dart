@@ -1,17 +1,34 @@
 import 'package:flutter/widgets.dart';
 import '../global_widgets/custom_icons.dart';
 
-enum FileType {
-  VIDEO,
-  IMAGE,
-  AUDIO,
-  DOCUMENT,
-  PROGRAMMING,
-  EXECUTABLE,
-  COMPRESSED,
-}
+enum FileType { VIDEO, IMAGE, AUDIO, DOCUMENT, PROGRAMMING, EXECUTABLE, COMPRESSED, UNKNOWN }
 
+class FileTypeTransform {
+  static FileType fromString(String type) {
+    type = type.toLowerCase();
+    switch (type) {
+      case 'video':
+        return FileType.VIDEO;
+      case 'image':
+        return FileType.IMAGE;
+      case 'audio':
+        return FileType.AUDIO;
+      case 'document':
+        return FileType.DOCUMENT;
+      case 'programming':
+        return FileType.PROGRAMMING;
+      case 'executable':
+        return FileType.EXECUTABLE;
+      case 'compressed':
+        return FileType.COMPRESSED;
+      default:
+        return FileType.UNKNOWN;
+    }
+  }
+}
 extension FileExtension on FileType {
+
+
   String get name {
     switch (this) {
       case FileType.VIDEO:

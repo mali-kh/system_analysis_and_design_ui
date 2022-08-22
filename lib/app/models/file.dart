@@ -15,6 +15,7 @@ class File {
   bool hasAttachments;
   List attachments;
   bool isSharedWithMe;
+  int? fatherId;
 
   File({
     required this.id,
@@ -28,6 +29,7 @@ class File {
     required this.hasAttachments,
     required this.attachments,
     required this.isSharedWithMe,
+    this.fatherId,
   });
 
   static String formatBytes(int bytes, int decimals) {

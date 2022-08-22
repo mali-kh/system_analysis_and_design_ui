@@ -11,7 +11,8 @@ class DeleteFileDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      alignment: Alignment.center,
+      //todo: fix the fucking alignment
+      // alignment: Alignment.center,
       title: DialogHeader(
         icon: FontAwesomeIcons.trashCan,
         title: "Delete File",

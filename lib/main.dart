@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
-
+import 'package:get/get.dart';
 import 'app/routes/pages.dart';
 
 Future<void> main() async {
@@ -10,7 +10,8 @@ Future<void> main() async {
   // await initServices();
   runApp(
     GetMaterialApp(
-      initialRoute: Routes.HOME,
+      initialRoute: Routes.SPLASH_SCREEN,
+      // initialRoute: Routes.HOME,
       getPages: AppPages.pages,
       builder: EasyLoading.init(),
       theme: ThemeData(

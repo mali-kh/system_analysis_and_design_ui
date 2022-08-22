@@ -8,6 +8,7 @@ class ApiProvider {
   Future<Response> get(
     Dio client,
     String endPoint, {
+    Map<String, dynamic>? parameters,
     bool showLoading = true,
     String contentType = 'application/json',
     bool authorization = true,
@@ -16,12 +17,11 @@ class ApiProvider {
       if (showLoading) {
         EasyLoading.show(status: Strings.LOADING, maskType: EasyLoadingMaskType.black, dismissOnTap: true);
       }
-      final Response response = await client.get(
-        endPoint,
-        options: Options(
-          headers: await getHeaders(contentType, authorization),
-        ),
-      );
+      final Response response = await client.get(endPoint,
+          options: Options(
+            headers: await getHeaders(contentType, authorization),
+          ),
+          queryParameters: parameters);
       return response;
     } on DioError catch (ex) {
       rethrow;
@@ -126,7 +126,7 @@ class ApiProvider {
     headers['Content-Type'] = contentType;
     if (authorization) {
       String? accessToken = await StorageProvider.getAccessToken();
-      headers['authorization'] = 'Bearer $accessToken';
+      headers['X-token'] = accessToken!;
     }
     return headers;
   }

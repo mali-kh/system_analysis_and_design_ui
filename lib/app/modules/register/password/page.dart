@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:system_analysis_and_design_project/app/core/values/strings.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
-import 'package:system_analysis_and_design_project/app/modules/register/password/controller.dart';
+import 'package:system_analysis_and_design_project/app/modules/register/controller.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
 class RegisterPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    RegisterPasswordController controller = Get.put(RegisterPasswordController());
+    RegisterController controller = Get.find();
+
+    print(controller.username);
+    print(controller.firstName);
+    print(controller.lastName);
+    print(controller.password);
+    print(controller.passwordRepeat);
 
     return Scaffold(
       body: SafeArea(
@@ -80,7 +86,9 @@ class RegisterPasswordPage extends StatelessWidget {
                             ),
                           ),
                           child: TextFormField(
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              controller.password = value;
+                            },
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -118,7 +126,9 @@ class RegisterPasswordPage extends StatelessWidget {
                             ),
                           ),
                           child: TextFormField(
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              controller.passwordRepeat = value;
+                            },
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -147,8 +157,8 @@ class RegisterPasswordPage extends StatelessWidget {
                           title: Strings.CONTINUE,
                           onTap: () {
                             //todo: change function
-                            Get.toNamed(Routes.REGISTER_PASSWORD);
-                            // controller.checkUsername();
+                            // Get.toNamed(Routes.REGISTER_PASSWORD);
+                            controller.register();
                           },
                           color: Color.fromRGBO(17, 80, 70, 1),
                           textColor: Colors.white,

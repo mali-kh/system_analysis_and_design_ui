@@ -143,6 +143,7 @@ class FileListTileMoreAction extends StatelessWidget {
                               builder: (context) {
                                 return FileRenameDialog(
                                   fileName: file.name,
+                                  file: file,
                                 );
                               },
                             );
@@ -157,7 +158,7 @@ class FileListTileMoreAction extends StatelessWidget {
                             Navigator.pop(context);
                             showDialog(
                               context: context,
-                              builder: (context) => ShareDialog(),
+                              builder: (context) => ShareDialog(file),
                             );
                           },
                         ),
@@ -179,6 +180,7 @@ class FileListTileMoreAction extends StatelessWidget {
                                     context: context,
                                     builder: (context) => AddToLibraryDialog(
                                       fileType: file.type,
+                                      file: file,
                                     ),
                                   );
                                 },

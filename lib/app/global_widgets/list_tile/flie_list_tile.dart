@@ -10,6 +10,8 @@ import 'package:system_analysis_and_design_project/app/global_widgets/list_tile/
 
 import 'package:system_analysis_and_design_project/app/models/file.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/controller.dart';
+import 'package:get/get.dart';
 
 import './file_list_tile_header.dart';
 
@@ -17,6 +19,7 @@ class FileListTile extends StatefulWidget {
   final MediaQueryData mq;
   final ThemeData theme;
   final File file;
+
   const FileListTile({
     required this.mq,
     required this.theme,
@@ -29,6 +32,7 @@ class FileListTile extends StatefulWidget {
 
 class _FileListTileState extends State<FileListTile> {
   late ExpandableController controller;
+
   @override
   void initState() {
     controller = ExpandableController();
@@ -95,19 +99,25 @@ class _FileListTileState extends State<FileListTile> {
                   if (index == widget.file.attachments.length) {
                     return Row(
                       children: [
-                        DottedBorder(
-                          borderType: BorderType.RRect,
-                          radius: Radius.circular(7),
-                          padding: EdgeInsets.symmetric(
-                            vertical: 3,
-                            horizontal: 10,
-                          ),
-                          dashPattern: [3],
-                          color: theme.primaryColor,
-                          child: Icon(
-                            Icons.add_rounded,
-                            color: Colors.black,
-                            // size: 10,
+                        GestureDetector(
+                          onTap: () {
+                            HomePageController controller = Get.find();
+                            controller.uploadAttachment(widget.file.id);
+                          },
+                          child: DottedBorder(
+                            borderType: BorderType.RRect,
+                            radius: Radius.circular(7),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 3,
+                              horizontal: 10,
+                            ),
+                            dashPattern: [3],
+                            color: theme.primaryColor,
+                            child: Icon(
+                              Icons.add_rounded,
+                              color: Colors.black,
+                              // size: 10,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -157,8 +167,7 @@ class _FileListTileState extends State<FileListTile> {
                               Column(
                                 children: [
                                   Container(
-                                    constraints: BoxConstraints(
-                                        maxWidth: mq.size.width * 0.5),
+                                    constraints: BoxConstraints(maxWidth: mq.size.width * 0.5),
                                     child: Text(
                                       file.name,
                                       style: TextStyle(

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/data/domain/model/request/auth_requests.dart';
 import 'package:system_analysis_and_design_project/app/data/domain/model/response/auth_reponses.dart';
 import 'package:system_analysis_and_design_project/app/data/services/authentication/auth_service.dart';
+import 'package:system_analysis_and_design_project/app/modules/register/controller.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
 class UsernameController extends GetxController {

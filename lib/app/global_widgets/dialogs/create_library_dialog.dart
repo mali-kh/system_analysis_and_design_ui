@@ -8,6 +8,7 @@ import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/co
 import 'package:system_analysis_and_design_project/app/global_widgets/dialogs/components/dialog_submit_button.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/file_type_container.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/controller.dart';
 
 class CreateLibraryDialog extends StatefulWidget {
   @override
@@ -18,6 +19,9 @@ class _CreateLibraryDialogState extends State<CreateLibraryDialog> {
   final focusNode = FocusNode();
   final textEditingController = TextEditingController();
   final controller = Get.put(CreateLibraryController());
+  HomePageController homePageController = Get.find();
+  String name = '';
+
   @override
   void initState() {
     controller.initializeFileType();
@@ -35,7 +39,8 @@ class _CreateLibraryDialogState extends State<CreateLibraryDialog> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        alignment: Alignment.center,
+        //todo: fix the fucking alignment
+        // alignment: Alignment.center,
         title: DialogHeader(
           icon: CustomIcons.library_icon,
           title: "Create Library",
@@ -45,6 +50,9 @@ class _CreateLibraryDialogState extends State<CreateLibraryDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
+              onChanged: (value) {
+                name = value;
+              },
               focusNode: focusNode,
               keyboardType: TextInputType.name,
               controller: textEditingController,
@@ -75,16 +83,13 @@ class _CreateLibraryDialogState extends State<CreateLibraryDialog> {
                     builder: (controller) {
                       return GestureDetector(
                         behavior: HitTestBehavior.translucent,
-                        onTap: () =>
-                            controller.changeSelectedFileType(fileType),
+                        onTap: () => controller.changeSelectedFileType(fileType),
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Colors.blue,
                               width: 1.5,
-                              style: controller.selectedFileType == fileType
-                                  ? BorderStyle.solid
-                                  : BorderStyle.none,
+                              style: controller.selectedFileType == fileType ? BorderStyle.solid : BorderStyle.none,
                             ),
                             borderRadius: BorderRadius.circular(6),
                           ),
@@ -128,6 +133,7 @@ class _CreateLibraryDialogState extends State<CreateLibraryDialog> {
             text: "Create",
             buttonColor: theme.primaryColor,
             onPressed: () {
+              homePageController.addLibrary(name, controller.selectedFileType);
               //TODO: create library
             },
           ),

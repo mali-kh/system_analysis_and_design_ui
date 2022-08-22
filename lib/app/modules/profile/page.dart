@@ -2,10 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/core/values/strings.dart';
+import 'package:system_analysis_and_design_project/app/data/providers/storage_provider.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/controller.dart';
 import 'package:system_analysis_and_design_project/app/modules/profile/local_widgets/custom_icon_button.dart';
 import 'package:system_analysis_and_design_project/app/modules/profile/local_widgets/info_dialog.dart';
+import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
 class ProfilePage extends StatelessWidget {
   void showTeamInfoDialog(BuildContext context, ThemeData theme) {
@@ -21,6 +25,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomePageController homePageController = Get.find();
     final mq = MediaQuery.of(context);
     final theme = Theme.of(context);
     return Scaffold(
@@ -50,8 +55,7 @@ class ProfilePage extends StatelessWidget {
                               Hero(
                                 tag: "Pic",
                                 child: CircleAvatar(
-                                  backgroundImage: AssetImage(
-                                      'assets/images/sample_profile.jpg'),
+                                  backgroundImage: AssetImage('assets/images/sample_profile.jpg'),
                                   minRadius: mq.size.width * 0.175,
                                 ),
                               ),
@@ -61,7 +65,7 @@ class ProfilePage extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    "Satya",
+                                    homePageController.firstName.value,
                                     style: TextStyle(
                                       color: theme.primaryColor,
                                       fontSize: 23,
@@ -71,7 +75,7 @@ class ProfilePage extends StatelessWidget {
                                     height: 5,
                                   ),
                                   Text(
-                                    "Nadella",
+                                    homePageController.lastName.value,
                                     style: TextStyle(
                                       color: theme.primaryColor,
                                       fontSize: 13,
@@ -87,7 +91,7 @@ class ProfilePage extends StatelessWidget {
                           top: 0,
                           child: GestureDetector(
                             behavior: HitTestBehavior.translucent,
-                            onTap: () => Navigator.pop(context),
+                            onTap: () => Get.back(),
                             child: Row(
                               children: [
                                 Icon(
@@ -155,7 +159,7 @@ class ProfilePage extends StatelessWidget {
                                       width: 20,
                                     ),
                                     Text(
-                                      'nadella@microsoft.com',
+                                      homePageController.username.value,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -258,8 +262,10 @@ class ProfilePage extends StatelessWidget {
                                 textColor: Colors.red,
                                 buttonColor: Colors.red.withAlpha(90),
                                 buttonText: "Logout",
-                                onTap: () {
+                                onTap: () async {
                                   //TODO: logout
+                                  await StorageProvider.deleteTokens();
+                                  Get.offAllNamed(Routes.SPLASH_SCREEN);
                                 },
                               ),
                             ),

@@ -4,7 +4,9 @@ import 'package:system_analysis_and_design_project/app/controllers/add_to_librar
 
 import 'package:system_analysis_and_design_project/app/controllers/libraries_controller.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/custom_icons.dart';
+import 'package:system_analysis_and_design_project/app/models/file.dart';
 import 'package:system_analysis_and_design_project/app/models/file_types.dart';
+import 'package:system_analysis_and_design_project/app/modules/home/controller.dart';
 
 import '../../models/library.dart';
 import 'components/dialog_cancel_button.dart';
@@ -13,9 +15,12 @@ import 'components/dialog_submit_button.dart';
 
 class AddToLibraryDialog extends StatefulWidget {
   final FileType fileType;
+  final File file;
+
   const AddToLibraryDialog({
     Key? key,
     required this.fileType,
+    required this.file,
   }) : super(key: key);
 
   @override
@@ -26,10 +31,13 @@ class _AddToLibraryDialogState extends State<AddToLibraryDialog> {
   List<Library> canBeChosenLibraries = [];
   bool doesHaveLibrariesToChoose = false;
   final controller = Get.put(AddToLibraryController());
+  HomePageController homePageController = Get.find();
+
   @override
   void initState() {
-    canBeChosenLibraries =
-        dummy_libraries.where((lib) => lib.type == widget.fileType).toList();
+    // canBeChosenLibraries =
+    //     dummy_libraries.where((lib) => lib.type == widget.fileType).toList();
+    canBeChosenLibraries = homePageController.libraries.where((lib) => lib.type == widget.fileType).toList();
     if (canBeChosenLibraries.isNotEmpty) {
       doesHaveLibrariesToChoose = true;
       controller.changeSelectedLibrary(canBeChosenLibraries[0]);
@@ -49,7 +57,8 @@ class _AddToLibraryDialogState extends State<AddToLibraryDialog> {
         title: "Add to Library",
         subtitle: "Select a Library to add the file.",
       ),
-      alignment: Alignment.center,
+      //todo: fix the fucking alignment
+      // alignment: Alignment.center,
       content: doesHaveLibrariesToChoose
           ? GetBuilder<AddToLibraryController>(
               builder: (controller) {
@@ -108,7 +117,9 @@ class _AddToLibraryDialogState extends State<AddToLibraryDialog> {
         DialogCancelButton(),
         if (doesHaveLibrariesToChoose)
           DialogSubmitButton(
-            onPressed: () {},
+            onPressed: () {
+              homePageController.addContentToLibrary(controller.selectedLibrary.name, widget.file.id);
+            },
             text: "Add",
             buttonColor: theme.primaryColor,
           ),

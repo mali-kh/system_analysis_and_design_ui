@@ -3,13 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/core/values/strings.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
-import 'package:system_analysis_and_design_project/app/modules/register/info/controller.dart';
-import 'package:system_analysis_and_design_project/app/routes/routes.dart';
+import 'package:system_analysis_and_design_project/app/modules/register/controller.dart';
 
 class RegisterInfoPage extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
-    RegisterInfoController controller = Get.put(RegisterInfoController());
+    RegisterController controller = Get.find();
 
     return Scaffold(
       body: SafeArea(
@@ -80,7 +81,9 @@ class RegisterInfoPage extends StatelessWidget {
                             ),
                           ),
                           child: TextFormField(
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              controller.firstName = value;
+                            },
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -117,7 +120,9 @@ class RegisterInfoPage extends StatelessWidget {
                             ),
                           ),
                           child: TextFormField(
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              controller.lastName = value;
+                            },
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -146,8 +151,7 @@ class RegisterInfoPage extends StatelessWidget {
                           title: Strings.CONTINUE,
                           onTap: () {
                             //todo: change function
-                            Get.toNamed(Routes.REGISTER_PASSWORD);
-                            // controller.checkUsername();
+                            controller.navigate();
                           },
                           color: Color.fromRGBO(17, 80, 70, 1),
                           textColor: Colors.white,

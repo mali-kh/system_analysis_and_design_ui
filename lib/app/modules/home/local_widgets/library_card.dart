@@ -70,17 +70,18 @@ class LibraryCard extends StatelessWidget {
                         itemBuilder: (ctx) => [
                           PopupMenuItem<LibraryAction>(
                             value: LibraryAction.RENAME,
-                            onTap: () {
-                              Future.delayed(
-                                const Duration(seconds: 0),
-                                () => showDialog(
-                                  context: context,
-                                  builder: (context) => LibraryRenameDialog(
-                                    libraryName: library.name,
-                                  ),
-                                ),
-                              );
-                            },
+                            //todo: use gesture detector for this
+                            // onTap: () {
+                            //   Future.delayed(
+                            //     const Duration(seconds: 0),
+                            //     () => showDialog(
+                            //       context: context,
+                            //       builder: (context) => LibraryRenameDialog(
+                            //         libraryName: library.name,
+                            //       ),
+                            //     ),
+                            //   );
+                            // },
                             padding: EdgeInsets.only(bottom: 10),
                             height: 30,
                             child: Center(
@@ -108,16 +109,17 @@ class LibraryCard extends StatelessWidget {
                           PopupMenuItem<LibraryAction>(
                             value: LibraryAction.DELETE,
                             // padding: EdgeInsets.symmetric(vertical: 10),
-                            onTap: () {
-                              Future.delayed(
-                                const Duration(seconds: 0),
-                                () => showDialog(
-                                  context: context,
-                                  builder: (context) =>
-                                      const LibraryDeleteDialog(),
-                                ),
-                              );
-                            },
+                            //todo: use gesture detector for this
+                            // onTap: () {
+                            //   Future.delayed(
+                            //     const Duration(seconds: 0),
+                            //     () => showDialog(
+                            //       context: context,
+                            //       builder: (context) =>
+                            //           const LibraryDeleteDialog(),
+                            //     ),
+                            //   );
+                            // },
                             height: 10,
                             child: Center(
                               child: Row(

@@ -21,7 +21,10 @@ class LoginRequest implements ServerRequestModel {
   final String username;
   final String password;
 
-  LoginRequest(this.username, this.password,);
+  LoginRequest(
+    this.username,
+    this.password,
+  );
 
   @override
   String toJson() {
@@ -32,4 +35,26 @@ class LoginRequest implements ServerRequestModel {
   }
 }
 
+class RegisterRequest implements ServerRequestModel {
+  final String username;
+  final String password;
+  final String firstName;
+  final String lastName;
 
+  RegisterRequest(
+    this.username,
+    this.password,
+    this.firstName,
+    this.lastName,
+  );
+
+  @override
+  String toJson() {
+    return jsonEncode(<String, dynamic>{
+      "username": this.username,
+      "password": this.password,
+      "first_name": this.firstName,
+      "last_name": this.lastName,
+    });
+  }
+}
