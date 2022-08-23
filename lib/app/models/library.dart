@@ -7,6 +7,7 @@ class Library {
   int numberOfItems;
   double size;
   List files;
+  int count;
   Library({
     required this.id,
     required this.name,
@@ -14,5 +15,6 @@ class Library {
     required this.numberOfItems,
     required this.size,
     required this.files,
+    required this.count,
   });
 }

@@ -146,3 +146,18 @@ class EditContentNameRequest implements ServerRequestModel {
     });
   }
 }
+
+class DeleteContentRequest implements ServerRequestModel {
+  final int id;
+
+  DeleteContentRequest(
+    this.id,
+  );
+
+  @override
+  String toJson() {
+    return jsonEncode(<String, dynamic>{
+      "id": this.id,
+    });
+  }
+}

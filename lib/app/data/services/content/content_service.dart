@@ -52,6 +52,21 @@ class ContentService {
     }
   }
 
+  Future<FilesResponse> getSharedFiles() async {
+    try {
+      final Response response = await ApiProvider().get(
+        _client,
+        'get-shared-file/',
+        authorization: true,
+        showLoading: false,
+        // parameters: parameters,
+      );
+      return FilesResponse.fromJson(response.data);
+    } on DioError {
+      rethrow;
+    }
+  }
+
   Future<AddContentToLibraryResponse> addContentToLibrary(AddContentToLibraryRequest request) async {
     try {
       final Response response = await ApiProvider().post(
@@ -107,6 +122,21 @@ class ContentService {
         showLoading: false,
       );
       return GrantPermissionResponse.fromJson(response.data);
+    } on DioError {
+      rethrow;
+    }
+  }
+
+  Future<DeleteContentResponse> deleteContent(int id) async {
+    try {
+      final Response response = await ApiProvider().delete(
+        _client,
+        'content/',
+        authorization: true,
+        showLoading: false,
+        parameters: {'id': id},
+      );
+      return DeleteContentResponse.fromJson(response.data);
     } on DioError {
       rethrow;
     }

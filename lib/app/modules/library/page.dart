@@ -176,9 +176,9 @@ class LibraryPage extends StatelessWidget {
                   ),
                 )
               : FilesListView(
-                  files: library.files,
-                  mq: mq,
-                  theme: theme,
+                  library.files,
+                  mq,
+                  theme,
                 ),
         ],
       ),

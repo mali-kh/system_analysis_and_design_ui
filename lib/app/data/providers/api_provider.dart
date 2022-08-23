@@ -17,11 +17,13 @@ class ApiProvider {
       if (showLoading) {
         EasyLoading.show(status: Strings.LOADING, maskType: EasyLoadingMaskType.black, dismissOnTap: true);
       }
-      final Response response = await client.get(endPoint,
-          options: Options(
-            headers: await getHeaders(contentType, authorization),
-          ),
-          queryParameters: parameters);
+      final Response response = await client.get(
+        endPoint,
+        options: Options(
+          headers: await getHeaders(contentType, authorization),
+        ),
+        queryParameters: parameters,
+      );
       return response;
     } on DioError catch (ex) {
       rethrow;
@@ -66,6 +68,7 @@ class ApiProvider {
   Future<Response> delete(
     Dio client,
     String endPoint, {
+    Map<String, dynamic>? parameters,
     bool showLoading = true,
     String contentType = 'application/json',
     bool authorization = true,
@@ -79,6 +82,7 @@ class ApiProvider {
         options: Options(
           headers: await getHeaders(contentType, authorization),
         ),
+        queryParameters: parameters,
       );
       return response;
     } on DioError catch (ex) {

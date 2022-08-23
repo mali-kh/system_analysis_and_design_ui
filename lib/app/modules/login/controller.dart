@@ -9,6 +9,9 @@ class LoginController extends GetxController {
   String username = '';
   String password = '';
 
+
+  LoginController(this.username);
+
   void login() async {
     if (username.length > 0 && password.length > 0) {
       try {

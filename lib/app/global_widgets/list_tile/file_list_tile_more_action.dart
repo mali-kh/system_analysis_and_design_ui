@@ -194,7 +194,7 @@ class FileListTileMoreAction extends StatelessWidget {
                             Navigator.pop(context);
                             showDialog(
                               context: context,
-                              builder: (context) => DeleteFileDialog(),
+                              builder: (context) => DeleteFileDialog(file.id),
                             );
                           },
                           hasDivider: false,

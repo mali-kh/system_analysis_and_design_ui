@@ -69,7 +69,7 @@ class FileInfoPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: AutoSizeText(
-                  "Sad Final.docx",
+                  file.name,
                   maxLines: 1,
                   minFontSize: 10,
                   overflow: TextOverflow.ellipsis,

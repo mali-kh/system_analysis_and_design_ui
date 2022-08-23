@@ -13,9 +13,11 @@ class File {
   Map additionalInfos;
   bool isAttachment;
   bool hasAttachments;
-  List attachments;
+  List<File> attachments;
   bool isSharedWithMe;
   int? fatherId;
+  int? libraryId;
+  String url;
 
   File({
     required this.id,
@@ -30,6 +32,8 @@ class File {
     required this.attachments,
     required this.isSharedWithMe,
     this.fatherId,
+    this.libraryId,
+    required this.url,
   });
 
   static String formatBytes(int bytes, int decimals) {

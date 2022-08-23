@@ -6,4 +6,5 @@ class Configs {
 
   static String getAuthUrl = '$_baseUrl$_authUrl';
   static String getContentUrl = '$_baseUrl$_contentUrl';
+  static String getBaseUrl = _baseUrl;
 }

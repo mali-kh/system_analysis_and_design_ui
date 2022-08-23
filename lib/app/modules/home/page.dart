@@ -313,9 +313,9 @@ class HomePage extends StatelessWidget {
                     Obx(
                       () => FilesListView(
                         //todo: fix this little shit
-                        files: controller.files.value,
-                        mq: _mq,
-                        theme: theme,
+                        controller.files.value,
+                        _mq,
+                        theme,
                       ),
                     ),
                     // Expanded(

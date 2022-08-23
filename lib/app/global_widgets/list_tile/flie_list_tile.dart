@@ -193,6 +193,10 @@ class _FileListTileState extends State<FileListTile> {
                               size: 18,
                               color: Colors.red,
                             ),
+                            onTap: () {
+                              HomePageController homePageController = Get.find();
+                              homePageController.deleteContent(widget.file.attachments.elementAt(index).id);
+                            },
                           ),
                         ],
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

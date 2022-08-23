@@ -117,6 +117,7 @@ class Info {
   final String fileDownloadName;
   final String typeCategory;
   final bool hasAttachment;
+  final int fileSize;
 
   Info(
     this.id,
@@ -131,6 +132,7 @@ class Info {
     this.fileDownloadName,
     this.typeCategory,
     this.hasAttachment,
+    this.fileSize,
   );
 
   static Info fromJson(Map<String, dynamic> json) {
@@ -147,6 +149,7 @@ class Info {
       json['file_download_name'],
       json['type_category'],
       json['has_attachment'],
+      json['file_size'],
     );
   }
 }
@@ -182,14 +185,36 @@ class AddContentInfoResponse {
   }
 }
 
+class DeleteContentResponse {
+  final String code;
+
+  DeleteContentResponse(
+    this.code,
+  );
+
+  static DeleteContentResponse fromJson(Map<String, dynamic> json) {
+    return DeleteContentResponse(
+      json['code'],
+    );
+  }
+}
+
 class LibraryInfo {
   final int id;
   final String name;
   final DateTime dateCreated;
   final String type;
   final int member;
+  final int contentNumber;
 
-  LibraryInfo(this.id, this.name, this.dateCreated, this.type, this.member);
+  LibraryInfo(
+    this.id,
+    this.name,
+    this.dateCreated,
+    this.type,
+    this.member,
+    this.contentNumber,
+  );
 
   static LibraryInfo fromJson(Map<String, dynamic> json) {
     return LibraryInfo(
@@ -198,6 +223,7 @@ class LibraryInfo {
       DateTime.parse(json['date_created']),
       json['type'],
       json['member'],
+      json['content_count'],
     );
   }
 }

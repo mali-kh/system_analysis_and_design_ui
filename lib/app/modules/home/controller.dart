@@ -48,15 +48,28 @@ class HomePageController extends GetxController {
     }
   }
 
+  Future<void> deleteContent(int id) async {
+    try {
+      DeleteContentResponse response = await ContentService().deleteContent(id);
+      if (response.code == "Ok") {
+        libraries.clear();
+        await getLibraries();
+        await getAllFiles();
+        Get.back();
+      }
+    } catch (e) {
+      print("tokhm Fdasfsd");
+    }
+  }
+
   Future<void> rename(int id, String name) async {
     if (name.length > 0) {
       try {
         var response = await ContentService().editContentName(EditContentNameRequest(id, name));
         if (response['code'] == "Ok") {
           libraries.clear();
-          files.clear();
-          getLibraries();
-          getAllFiles();
+          await getLibraries();
+          await getAllFiles();
           Get.back();
         }
       } catch (e) {
@@ -70,9 +83,8 @@ class HomePageController extends GetxController {
       AddContentToLibraryResponse response = await ContentService().addContentToLibrary(AddContentToLibraryRequest(libraryName, contentId));
       if (response.code == "OK") {
         libraries.clear();
-        files.clear();
-        getLibraries();
-        getAllFiles();
+        await getLibraries();
+        await getAllFiles();
         Get.back();
       }
     } catch (e) {
@@ -87,8 +99,7 @@ class HomePageController extends GetxController {
         if (response.code == "OK") {
           Get.back();
           Get.back();
-          files.clear();
-          getAllFiles();
+          await getAllFiles();
           //todo: do something like update or anything else
         }
       } catch (e) {
@@ -112,6 +123,35 @@ class HomePageController extends GetxController {
   }
 
   Future<void> getAllFiles() async {
+    files.clear();
+    await getFiles();
+    await getSharedFiles();
+  }
+
+  Future<void> getSharedFiles() async {
+    FilesResponse response = await ContentService().getSharedFiles();
+    if (response.code == "OK") {
+      for (Info file in response.info) {
+        File temp = File(
+          id: file.id,
+          name: file.name,
+          uploadedDate: file.dateCreated,
+          size: file.fileSize,
+          type: Custom.FileTypeTransform.fromString(file.typeCategory),
+          additionalInfos: file.info,
+          isAttachment: file.fatherContent == null ? false : true,
+          hasAttachments: false,
+          attachments: [],
+          isSharedWithMe: true,
+          libraryId: null,
+          url: file.fileDownloadName,
+        );
+        this.files.add(temp);
+      }
+    }
+  }
+
+  Future<void> getFiles() async {
     try {
       FilesResponse response = await ContentService().getFiles({'all_content': true});
 
@@ -122,13 +162,15 @@ class HomePageController extends GetxController {
             id: file.id,
             name: file.name,
             uploadedDate: file.dateCreated,
-            size: 10,
+            size: file.fileSize,
             type: Custom.FileTypeTransform.fromString(file.typeCategory),
             additionalInfos: file.info,
             isAttachment: file.fatherContent == null ? false : true,
             hasAttachments: file.hasAttachment,
             attachments: [],
             isSharedWithMe: false,
+            libraryId: file.library,
+            url: file.fileDownloadName,
           );
           if (file.fatherContent == null) {
             this.files.add(temp);
@@ -141,6 +183,14 @@ class HomePageController extends GetxController {
           for (File notAttachment in this.files) {
             if (attachment.fatherId == notAttachment.id) {
               notAttachment.attachments.add(attachment);
+            }
+          }
+        }
+
+        for (File file in this.files) {
+          for (Library library in this.libraries) {
+            if (file.libraryId != null && file.libraryId == library.id) {
+              library.files.add(file);
             }
           }
         }
@@ -163,14 +213,17 @@ class HomePageController extends GetxController {
                   name: element.name,
                   type: Custom.FileTypeTransform.fromString(element.type),
                   numberOfItems: element.member,
-                  size: 2,
+                  size: 0,
                   files: [],
+                  count: element.contentNumber
                 ),
               );
         });
         //todo: do something like update or anything else
       }
-    } catch (e) {}
+    } catch (e) {
+      print("fdsaofjdousajfidosjafds");
+    }
   }
 
   void addLibrary(String name, Custom.FileType fileType) async {
@@ -179,7 +232,8 @@ class HomePageController extends GetxController {
         AddLibraryResponse response = await ContentService().addLibrary(AddLibraryRequest(name, fileType));
         if (response.code == "OK") {
           this.libraries.clear();
-          getLibraries();
+          await getLibraries();
+          Get.back();
           //todo: do something like update or anything else
         }
       } catch (e) {}
@@ -221,7 +275,6 @@ class HomePageController extends GetxController {
             contentType: "multipart/form-data",
           ),
         );
-        this.files.clear();
         await getAllFiles();
       } catch (e) {
         print(e);
@@ -266,7 +319,6 @@ class HomePageController extends GetxController {
             contentType: "multipart/form-data",
           ),
         );
-        this.files.clear();
         await getAllFiles();
       } catch (e) {
         print(e);

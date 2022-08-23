@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:system_analysis_and_design_project/app/core/values/strings.dart';
 import 'package:system_analysis_and_design_project/app/global_widgets/buttons.dart';
 import 'package:system_analysis_and_design_project/app/modules/login/controller.dart';
+import 'package:system_analysis_and_design_project/app/modules/username/controller.dart';
 import 'package:system_analysis_and_design_project/app/routes/routes.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    LoginController controller = Get.put(LoginController());
+    UsernameController usernameController = Get.find();
+    LoginController controller = Get.put(LoginController(usernameController.username));
 
     return Scaffold(
       body: SafeArea(
@@ -91,7 +93,7 @@ class LoginPage extends StatelessWidget {
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Email',
+                              // hintText: 'Email',
                               hintStyle: TextStyle(
                                 color: Colors.black,
                               ),
@@ -99,6 +101,7 @@ class LoginPage extends StatelessWidget {
                             inputFormatters: [
                               // LengthLimitingTextInputFormatter(32),
                             ],
+                            initialValue: controller.username,
                           ),
                         ),
                       ],
